@@ -16,7 +16,7 @@ const MainNav=()=>{
 
   }}>
       <Tab.Screen name="Home" component={Home}  />
-      <Tab.Screen name="Settings" component={SettingsPage} />
+      <Tab.Screen name="Info" component={SettingsPage} />
     </Tab.Navigator>
   );
 }

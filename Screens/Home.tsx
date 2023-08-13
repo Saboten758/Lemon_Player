@@ -4,9 +4,12 @@ import { View,StyleSheet,Text, Dimensions, TouchableOpacity } from "react-native
 import { Card } from "react-native-paper";
 
 const Home=()=>{
+  
   const nav=useNavigation()
     return(
+      
         <View style={styles.container}>
+          <Text style={styles.head}>Radio</Text>
           <Card>
       <Card.Cover
               source={require('../assets/city_dark.gif')}
@@ -26,6 +29,11 @@ const styles=StyleSheet.create({
       justifyContent:'center',
       alignItems:'center',
       backgroundColor:'#668285',
+    },
+    head:{
+      color:'black',
+      fontFamily:'BebasNeue-Regular',
+      fontSize:56,
     },
    txt:{
     fontSize:14,
