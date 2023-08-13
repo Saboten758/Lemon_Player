@@ -102,7 +102,7 @@ import { Card } from 'react-native-paper';
       }
     return(
       <View>
-        <View style={styles.playlist}>
+        <View style={[styles.playlist,{width:Dimensions.get('screen').width}-40]}>
           <FlatList
             data={queue}
             renderItem={({item, index}) => <PlaylistItem
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
   playlist: {
     padding:2,
     marginTop: 40,
-    backgroundColor:'#FFD890',
+    backgroundColor:'#668285',
     marginBottom: 40,
     borderRadius:20,
     height:170,
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     position:'relative',
     textShadowColor:'black',
     borderWidth: 4,
-    borderColor: '#CD853F', 
+    borderColor: '#3D3C49', 
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
@@ -250,10 +250,10 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     paddingRight: 8,
     borderRadius: 20,
-    backgroundColor: '#FFD700', 
+    backgroundColor: 'white', 
     marginVertical: 4, 
     fontWeight: 'bold',
-    textShadowColor: '#CD853F', 
+    textShadowColor: '#AD8C9C', 
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
   },

@@ -3,7 +3,7 @@ import { Dimensions } from "react-native";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Home from "../Screens/Home";
 import SettingsPage from "../Screens/SettingsPage";
-import { NavigationContainer } from "@react-navigation/native";
+
 
 const Tab = createMaterialTopTabNavigator();
 const MainNav=()=>{
