@@ -10,6 +10,7 @@ import TrackPlayer, {
   import Icon from 'react-native-vector-icons/FontAwesome';
   import { setupPlayer, addTracks,Night } from './trackplayer';
 import { Card } from 'react-native-paper';
+import axios from 'axios';
  
   function TrackProgress() {
     const { position, duration } = useProgress(200);
@@ -75,7 +76,9 @@ import { Card } from 'react-native-paper';
         TrackPlayer.getCurrentTrack().then((index) => setCurrentTrack(index));
       }
     });
-  
+    const sep=()=>(
+      <View style={{borderWidth:1,borderColor:'white',width:'auto'}}/>
+    )
     function PlaylistItem({index, title, isCurrent}) {
   
       function handleItemPress() {
@@ -86,7 +89,7 @@ import { Card } from 'react-native-paper';
         <TouchableOpacity onPress={handleItemPress}>
           <Text
             style={{...styles.playlistItem,
-              ...{backgroundColor: isCurrent ? '#666' : 'transparent'}}}>
+              ...{backgroundColor: isCurrent ? '#8000ff' : 'transparent'}}}>
           {title}
           </Text>
         </TouchableOpacity>
@@ -102,8 +105,9 @@ import { Card } from 'react-native-paper';
       }
     return(
       <View>
-        <View style={[styles.playlist,{width:Dimensions.get('screen').width}-40]}>
+        <View style={[styles.playlist,{width:Dimensions.get("screen").width-40}]}>
           <FlatList
+            ItemSeparatorComponent={sep}
             data={queue}
             renderItem={({item, index}) => <PlaylistItem
                                               index={index}
@@ -157,8 +161,18 @@ import { Card } from 'react-native-paper';
   }
 
 function Music() {
-
+  
   const [isPlayerReady, setIsPlayerReady] = useState(false);
+  const [back,setBack]=useState("")
+  const [pick,setPick]=useState(0)
+  async function fetch_img(){
+    const res=await axios.get("https://api.plaza.one/backgrounds/random")
+    setBack(res.data.src)
+    let rand=Math.random()
+    rand>0.5?rand=1:rand=0
+    setPick(rand)
+  }
+
 
   useEffect(() => {
     async function setup() {
@@ -171,7 +185,7 @@ function Music() {
 
       setIsPlayerReady(isSetup);
     }
-
+    fetch_img();
     setup();
   }, []);
 
@@ -182,13 +196,16 @@ function Music() {
       </SafeAreaView>
     );
   }
-
+  
+  
   return (
-    <ImageBackground source={require('../assets/mood.gif')}style={styles.container}>
+
+    <ImageBackground source={pick?require('../assets/mood.gif'):require('../assets/smoke.gif')}
+    style={styles.container}>
       
       <Card>
       <Card.Cover
-              source={require('../assets/smoke.gif')}
+              source={back?{uri:back}:require('../assets/mood.gif')}
               style={[styles.city,{width:Dimensions.get("screen").width-40}]}
             />
       </Card>
@@ -214,7 +231,7 @@ const styles = StyleSheet.create({
   playlist: {
     padding:2,
     marginTop: 40,
-    backgroundColor:'#668285',
+    backgroundColor:'black',
     marginBottom: 40,
     borderRadius:20,
     height:170,
@@ -244,7 +261,7 @@ const styles = StyleSheet.create({
   playlistItem: {
     position:'relative',
     fontSize: 18,
-    color: 'black',
+    color: 'white',
     paddingTop: 4,
     paddingBottom: 4,
     paddingLeft: 8,
@@ -275,7 +292,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 3,
     elevation: 4,
-    borderColor:'grey',
+    borderColor:'#668285',
     borderWidth:6,
   },
   txt:{

@@ -72,9 +72,10 @@ import TrackPlayer, {
     await TrackPlayer.add([
       {
         id:'1',
-        url: "http://radio.plaza.one/mp3",
+        url: "https://radio.plaza.one/mp3",
         artist:"Nightwave Plaza: A tranquil oasis of lo-fi hip hop and chill beats.",
         title:'Night Wave Plaza Radio',
+        artwork:require('../assets/plaza.png'),
         duration:0,
         isLiveStream:true,
       },
@@ -84,11 +85,13 @@ import TrackPlayer, {
         artist:"Japan's greatest hits of the 60s, 70s and 80s.",
         title:'J1 Gold Radio',
         duration:0,
+        artwork:require('../assets/j1gold.png'),
         isLiveStream:true,
       },
       {
         id:'3',
         url: "https://jenny.torontocast.com:2000/stream/J1XTRA",
+        artwork:require('../assets/j1xtra.png'),
         artist:"Playing the hits from the Heisei era (1989~2019)",
         title:'J1 Xtra Radio',
         duration:0,
@@ -97,6 +100,7 @@ import TrackPlayer, {
       {
         id:'4',
         url: "https://jenny.torontocast.com:2000/stream/J1HITS",
+        artwork:require('../assets/j1hits.png'),
         artist:"Japan's Hottest Hits. Playing today's hits heard on Japanese FM radio.",
         title:'J1 Hits Radio',
         duration:0,
