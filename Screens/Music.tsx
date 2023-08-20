@@ -30,9 +30,15 @@ import axios from 'axios';
     );
   }
   function Header() {
+    const [width,setWidth]=useState(Dimensions.get('window').width)
     const [info, setInfo] = useState({});
     useEffect(() => {
       setTrackInfo();
+      const handle=async()=>{
+        const w=Dimensions.get('window').width
+        setWidth(w)
+      }
+      Dimensions.addEventListener('change',handle)
     }, []);
   
     useTrackPlayerEvents([Event.PlaybackTrackChanged], (event) => {
@@ -48,7 +54,7 @@ import axios from 'axios';
     }
   
     return(
-      <View style={styles.media}>
+      <View style={[styles.media,{width:width-40}]}>
       <View style={styles.scanlines}>
           <View style={styles.crtEffect}>
             <Text>Now Playing:</Text>
@@ -59,15 +65,21 @@ import axios from 'axios';
       </View>
     );}
   function Playlist() {
+    const [width,setWidth] =useState(Dimensions.get('window').width)
     const [queue, setQueue] = useState([]);
     const [currentTrack, setCurrentTrack] = useState(0);
-  
+
     async function loadPlaylist() {
       const queue = await TrackPlayer.getQueue();
       setQueue(queue);
     }
   
     useEffect(() => {
+      const handle=async()=>{
+        const width=Dimensions.get('window').width;
+        setWidth(width);
+    }
+    Dimensions.addEventListener('change',handle);
       loadPlaylist();
     }, []);
   
@@ -105,7 +117,7 @@ import axios from 'axios';
       }
     return(
       <View>
-        <View style={[styles.playlist,{width:Dimensions.get("screen").width-40}]}>
+        <View style={[styles.playlist,{width:width-40}]}>
           <FlatList
             ItemSeparatorComponent={sep}
             data={queue}
@@ -165,6 +177,17 @@ function Music() {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const [back,setBack]=useState("")
   const [pick,setPick]=useState(0)
+  const [width,setWidth]=useState(Dimensions.get('window').width)
+
+  useEffect(()=>{
+    const handle=async()=>{
+        const width=Dimensions.get('window').width;
+        setWidth(width);
+    }
+    Dimensions.addEventListener('change',handle);
+  },[])
+
+
   async function fetch_img(){
     const res=await axios.get("https://api.plaza.one/backgrounds/random")
     setBack(res.data.src)
@@ -206,7 +229,7 @@ function Music() {
       <Card>
       <Card.Cover
               source={back?{uri:back}:require('../assets/mood.gif')}
-              style={[styles.city,{width:Dimensions.get("screen").width-40}]}
+              style={[styles.city,{width:width-40}]}
             />
       </Card>
       <Playlist/>
