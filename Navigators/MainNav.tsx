@@ -3,6 +3,8 @@ import { Dimensions } from "react-native";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Home from "../Screens/Home";
 import SettingsPage from "../Screens/SettingsPage";
+import Games from "../Screens/Games";
+import Manga from "../Screens/Manga";
 
 
 const Tab = createMaterialTopTabNavigator();
@@ -15,8 +17,11 @@ const MainNav=()=>{
       tabBarInactiveTintColor: '#E3F4F6',
 
   }}>
-      <Tab.Screen name="Home" component={Home}  />
+      <Tab.Screen name="Player" component={Home}  />
+      <Tab.Screen name="Games" component={Games} />
+      <Tab.Screen name="Manga" component={Manga} />
       <Tab.Screen name="Info" component={SettingsPage} />
+      
     </Tab.Navigator>
   );
 }

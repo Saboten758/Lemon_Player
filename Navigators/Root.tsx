@@ -6,13 +6,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar,View,Text } from "react-native";
 import MainNav from "./MainNav";
 import Music from "../Screens/Music";
-import MyWebComponent from "../Screens/SimpleMmo";
-import Gran from "../Screens/GranBlue";
+import MyWebComponent from "../Others/SimpleMmo";
+import Gran from "../Others/GranBlue";
 import MangaDex from "../Others/Mangadex";
 import Mangato from "../Others/Mangato";
 import Toonily from "../Others/Toonily";
 import Yoo from "../Others/YtM";
 import Spot from "../Others/Spot";
+import Kuru from "../Others/Kuru";
 
 const Stack=createNativeStackNavigator();
 
@@ -50,12 +51,10 @@ const Root=()=>{
         <Stack.Screen  name="Toonily" component={Toonily} options={{
             headerShown:false
         }}/>
-        <Stack.Screen  name="MOOZIC" component={Yoo} options={{
+        <Stack.Screen  name="Kuru" component={Kuru} options={{
             headerShown:false
         }}/>
-        <Stack.Screen  name="Spot" component={Spot} options={{
-            headerShown:false
-        }}/>
+       
         </Stack.Navigator>
     </NavigationContainer>
     )
