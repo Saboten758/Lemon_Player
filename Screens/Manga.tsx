@@ -57,7 +57,7 @@ const Manga=()=>{
               <Title  >Toonily</Title>
             </Card.Content>
             <Card.Cover
-              source={{uri:'https://i.pinimg.com/736x/00/b3/bb/00b3bb0cdc3beef3a0681020c586b584.jpg'}}
+              source={{uri:'https://images.alphacoders.com/107/1071074.png'}}
               
             />
             <Card.Content >
