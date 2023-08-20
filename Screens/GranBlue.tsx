@@ -5,10 +5,10 @@ import { WebView } from 'react-native-webview';
 const Gran = () => {
    
 
-    Alert.alert("Google Auth Problem","Google Auth is not allowed for web views! Do You want to open on web instead?",[
-        { text: 'Cancel', style: 'cancel' },
-        { text: 'OK', onPress: () => Linking.openURL('https://game.granbluefantasy.jp') },
-      ],)
+    // Alert.alert("Google Auth Problem","Google Auth is not allowed for web views! Do You want to open on web instead?",[
+    //     { text: 'Cancel', style: 'cancel' },
+    //     { text: 'OK', onPress: () => Linking.openURL('https://game.granbluefantasy.jp') },
+    //   ],)
 
   return (
     <View style={styles.container}>

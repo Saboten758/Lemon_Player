@@ -17,6 +17,10 @@ const Home=()=>{
             />
       </Card>
           <TouchableOpacity style={styles.button}onPress={()=>{nav.navigate('Music')}}><Text style={styles.txt}>Plaza Radio & More</Text></TouchableOpacity>
+          <View style={{flexDirection:'row'}}>
+          <TouchableOpacity style={[styles.button,{backgroundColor:'#ff3333',marginTop:2}]}onPress={()=>{nav.navigate('MOOZIC')}}><Text style={[styles.txt,{color:'white'}]}>Youtube Music</Text></TouchableOpacity>
+          <TouchableOpacity style={[styles.button,{backgroundColor:'#00b300',marginTop:2}]} onPress={()=>{nav.navigate('Spot')}}><Text style={[styles.txt,{color:'white'}]}>Spotify</Text></TouchableOpacity>
+          </View>
         </View>
     )
 }

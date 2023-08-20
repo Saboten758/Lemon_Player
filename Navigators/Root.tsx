@@ -11,6 +11,8 @@ import Gran from "../Screens/GranBlue";
 import MangaDex from "../Others/Mangadex";
 import Mangato from "../Others/Mangato";
 import Toonily from "../Others/Toonily";
+import Yoo from "../Others/YtM";
+import Spot from "../Others/Spot";
 
 const Stack=createNativeStackNavigator();
 
@@ -46,6 +48,12 @@ const Root=()=>{
             headerShown:false
         }}/>
         <Stack.Screen  name="Toonily" component={Toonily} options={{
+            headerShown:false
+        }}/>
+        <Stack.Screen  name="MOOZIC" component={Yoo} options={{
+            headerShown:false
+        }}/>
+        <Stack.Screen  name="Spot" component={Spot} options={{
             headerShown:false
         }}/>
         </Stack.Navigator>
