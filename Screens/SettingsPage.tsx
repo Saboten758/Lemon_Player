@@ -5,7 +5,7 @@ import { Card } from "react-native-paper";
 
 
 const SettingsPage=()=>{
-  const nav=useNavigation();
+  
     return(
       <ScrollView style={{flexGrow:1,backgroundColor:'#131313'}}>
         <View style={styles.containerz}>

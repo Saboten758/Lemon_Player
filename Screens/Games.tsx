@@ -1,9 +1,10 @@
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import React, { useState } from 'react'
 import { View,ScrollView,TouchableOpacity,StyleSheet,Text, Linking } from 'react-native'
 import { Card, Paragraph, Title } from 'react-native-paper'
 
 const Games=()=>{
+   
     const nav=useNavigation()
     return(
 
@@ -31,7 +32,8 @@ const Games=()=>{
               </Paragraph>
             </Card.Content>
             <Card.Actions >
-            <TouchableOpacity onPress={()=>{nav.navigate('Gran')}} style={[styles.button,{backgroundColor:'#9999ff',elevation:3}]}><Text style={styles.txt}>Play Now!</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{nav.navigate('Gran',{data:true})}} ><Text style={{color:'blue'}}>Log in</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{nav.navigate('Gran',{data:false})}} style={[styles.button,{backgroundColor:'#9999ff',elevation:3}]}><Text style={styles.txt}>Play Now!</Text></TouchableOpacity>
             </Card.Actions>
           </Card>
 

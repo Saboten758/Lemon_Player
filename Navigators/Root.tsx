@@ -14,6 +14,7 @@ import Toonily from "../Others/Toonily";
 import Yoo from "../Others/YtM";
 import Spot from "../Others/Spot";
 import Kuru from "../Others/Kuru";
+import Games from "../Screens/Games";
 
 const Stack=createNativeStackNavigator();
 
@@ -39,8 +40,10 @@ const Root=()=>{
         <Stack.Screen  name="Web" component={MyWebComponent} options={{
             headerShown:false
         }}/>
-        <Stack.Screen  name="Gran" component={Gran} options={{
+      
+        <Stack.Screen  name="Gran" component={Gran}  options={{
             headerShown:false
+            
         }}/>
         <Stack.Screen  name="MangaDex" component={MangaDex} options={{
             headerShown:false
