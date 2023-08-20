@@ -37,7 +37,7 @@ const Manga=()=>{
               <Title  >Mangato</Title>
             </Card.Content>
             <Card.Cover
-              source={{uri:'https://i.redd.it/h46l0kdgvrz81.jpg'}}
+              source={{uri:'https://s3.amazonaws.com/shonenjump.viz.com/drupal/art/knight.jpg'}}
               
             />
             <Card.Content >
