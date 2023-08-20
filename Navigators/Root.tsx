@@ -6,6 +6,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar,View,Text } from "react-native";
 import MainNav from "./MainNav";
 import Music from "../Screens/Music";
+import MyWebComponent from "../Screens/SimpleMmo";
+import Gran from "../Screens/GranBlue";
+import MangaDex from "../Others/Mangadex";
+import Mangato from "../Others/Mangato";
+import Toonily from "../Others/Toonily";
 
 const Stack=createNativeStackNavigator();
 
@@ -28,6 +33,21 @@ const Root=()=>{
           },
           headerTintColor: 'white',
         })}/>
+        <Stack.Screen  name="Web" component={MyWebComponent} options={{
+            headerShown:false
+        }}/>
+        <Stack.Screen  name="Gran" component={Gran} options={{
+            headerShown:false
+        }}/>
+        <Stack.Screen  name="MangaDex" component={MangaDex} options={{
+            headerShown:false
+        }}/>
+        <Stack.Screen  name="MangaTo" component={Mangato} options={{
+            headerShown:false
+        }}/>
+        <Stack.Screen  name="Toonily" component={Toonily} options={{
+            headerShown:false
+        }}/>
         </Stack.Navigator>
     </NavigationContainer>
     )

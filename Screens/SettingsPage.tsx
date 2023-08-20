@@ -1,10 +1,13 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View,StyleSheet,Text, TouchableOpacity, Linking,Dimensions } from "react-native";
+import { View,StyleSheet,Text, ScrollView,TouchableOpacity, Linking,Dimensions } from "react-native";
 import { Card } from "react-native-paper";
 
 
 const SettingsPage=()=>{
+  const nav=useNavigation();
     return(
+      <ScrollView style={{flexGrow:1,backgroundColor:'#131313'}}>
         <View style={styles.containerz}>
             <Text style={styles.head}>Lemon</Text>
             <Text style={[styles.head,{marginTop:0}]}>Player</Text>
@@ -17,6 +20,32 @@ const SettingsPage=()=>{
         
           <TouchableOpacity onPress={()=>{Linking.openSettings()}} style={styles.button}><Text style={styles.txt}>App Info</Text></TouchableOpacity>
   
+
+          <View style={styles.web}>
+            <Text style={styles.webg} >
+                WEB GAMES
+            </Text>
+            <View style={{flexDirection:'row'}}>
+            <TouchableOpacity onPress={()=>{nav.navigate('Gran')}} style={[styles.button,{backgroundColor:'#66ccff',elevation:3}]}><Text style={styles.txt}>Gran Blue Fantasy</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{nav.navigate('Web')}} style={[styles.button,{backgroundColor:'#3333cc'}]}><Text style={[styles.txt,{color:'white'}]}>Simple MMO</Text></TouchableOpacity>
+
+            </View>
+            
+          </View>
+
+          <View style={[styles.web,{backgroundColor:'#ffff1a'}]}>
+            <Text style={[styles.webg]} >
+                MANGA
+            </Text>
+            <View style={{flexDirection:'row'}}>
+            <TouchableOpacity onPress={()=>{nav.navigate('MangaDex')}} style={[styles.button,{backgroundColor:'#ff6600',elevation:3}]}><Text style={styles.txt}>MangaDex</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{nav.navigate('MangaTo')}} style={[styles.button,{backgroundColor:'#ccffcc'}]}><Text style={[styles.txt]}>Mangato</Text></TouchableOpacity>
+
+            </View>
+            <TouchableOpacity onPress={()=>{nav.navigate('Toonily')}} style={[styles.button,{backgroundColor:'#00b300',marginTop:1}]}><Text style={[styles.txt,{color:'white'}]}>Toonily</Text></TouchableOpacity>
+            
+          </View>
+          <Text style={styles.foot}>SABOTEN</Text>
           <View style={styles.container}>
             <View style={styles.fake_card}>  
             <Text style={[styles.txt,{color:'black',marginBottom:5}]}>Contact Me!</Text>
@@ -26,11 +55,12 @@ const SettingsPage=()=>{
             <TouchableOpacity style={[styles.buttonz,{backgroundColor:'#ff0000'}]}onPress={()=>{Linking.openURL("https://saboten123.itch.io")}}><Text style={[styles.txt2,{color:'black'}]}>itch.io</Text></TouchableOpacity>
             </View>
             </View>
-            <Text style={styles.foot}>SABOTEN</Text>
+            
           
             
         </View>
         </View>
+        </ScrollView>
     )
 }
 
@@ -47,6 +77,18 @@ const styles=StyleSheet.create({
       alignItems:'center',
       flex:1,
       justifyContent:'center',
+  },
+  web:{
+    alignItems:'center',
+    backgroundColor:'#ffffcc',
+    margin:10,
+    borderRadius:10,
+  },
+  webg:{
+    fontFamily:'Caveat-VariableFont_wght',
+    color:'black',
+    marginTop:10,
+    fontSize:25,
   },
   txt2:{
       color:'white',
@@ -71,7 +113,7 @@ const styles=StyleSheet.create({
       margin:5,
   },
     foot:{
-      
+      margin:10,
       fontSize:44,
       shadowColor:'#ffffcc',
       shadowOffset:{width:12,height:12},
@@ -97,7 +139,8 @@ const styles=StyleSheet.create({
       height:80,
       padding:10,
       width:100,
-      margin:20
+      margin:20,
+      elevation:3,
     },
     city:{
       height:260,
