@@ -28,7 +28,7 @@ const Manga=()=>{
         
             </Card.Content>
             <Card.Actions >
-            <TouchableOpacity onPress={()=>{nav.navigate('MangaDex')}} style={[styles.button,{backgroundColor:'#ff6600',elevation:3}]}><Text style={styles.txt}>MangaDex</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{nav.navigate('Web',{data:2})}} style={[styles.button,{backgroundColor:'#ff6600',elevation:3}]}><Text style={styles.txt}>MangaDex</Text></TouchableOpacity>
             </Card.Actions>
           </Card>
 
@@ -47,7 +47,7 @@ const Manga=()=>{
         
             </Card.Content>
             <Card.Actions >
-            <TouchableOpacity onPress={()=>{nav.navigate('MangaTo')}} style={[styles.button,{backgroundColor:'#333333'}]}><Text style={[styles.txt,{color:'white'}]}>Mangato</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{nav.navigate('Web',{data:3})}} style={[styles.button,{backgroundColor:'#333333'}]}><Text style={[styles.txt,{color:'white'}]}>Mangato</Text></TouchableOpacity>
 
             </Card.Actions>
           </Card>
@@ -67,7 +67,7 @@ const Manga=()=>{
         
             </Card.Content>
             <Card.Actions >
-            <TouchableOpacity onPress={()=>{nav.navigate('Toonily')}} style={[styles.button,{backgroundColor:'#00b300',marginTop:1}]}><Text style={[styles.txt,{color:'white'}]}>Toonily</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{nav.navigate('Web',{data:4})}} style={[styles.button,{backgroundColor:'#00b300',marginTop:1}]}><Text style={[styles.txt,{color:'white'}]}>Toonily</Text></TouchableOpacity>
 
             </Card.Actions>
           </Card>

@@ -6,15 +6,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar,View,Text } from "react-native";
 import MainNav from "./MainNav";
 import Music from "../Screens/Music";
-import MyWebComponent from "../Others/SimpleMmo";
+
 import Gran from "../Others/GranBlue";
-import MangaDex from "../Others/Mangadex";
+
 import Mangato from "../Others/Mangato";
 import Toonily from "../Others/Toonily";
-import Yoo from "../Others/YtM";
-import Spot from "../Others/Spot";
-import Kuru from "../Others/Kuru";
-import Games from "../Screens/Games";
+
+
+import Web from "../Others/Web";
 
 const Stack=createNativeStackNavigator();
 
@@ -37,26 +36,22 @@ const Root=()=>{
           },
           headerTintColor: 'white',
         })}/>
-        <Stack.Screen  name="Web" component={MyWebComponent} options={{
+        {/* <Stack.Screen  name="Web" component={MyWebComponent} options={{
             headerShown:false
+        }}/> */}
+        <Stack.Screen  name="Web" component={Web}  options={{
+            headerShown:false
+            
         }}/>
-      
+
         <Stack.Screen  name="Gran" component={Gran}  options={{
             headerShown:false
             
         }}/>
-        <Stack.Screen  name="MangaDex" component={MangaDex} options={{
-            headerShown:false
-        }}/>
-        <Stack.Screen  name="MangaTo" component={Mangato} options={{
-            headerShown:false
-        }}/>
-        <Stack.Screen  name="Toonily" component={Toonily} options={{
-            headerShown:false
-        }}/>
-        <Stack.Screen  name="Kuru" component={Kuru} options={{
-            headerShown:false
-        }}/>
+     
+       
+      
+       
        
         </Stack.Navigator>
     </NavigationContainer>

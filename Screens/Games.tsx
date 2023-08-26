@@ -54,7 +54,7 @@ const Games=()=>{
               </Paragraph>
             </Card.Content>
             <Card.Actions >
-            <TouchableOpacity onPress={()=>{nav.navigate('Web')}} style={[styles.button,{backgroundColor:'#3333cc'}]}><Text style={[styles.txt,{color:'white'}]}>PLAY NOW!</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{nav.navigate('Web',{data:0})}} style={[styles.button,{backgroundColor:'#3333cc'}]}><Text style={[styles.txt,{color:'white'}]}>PLAY NOW!</Text></TouchableOpacity>
             </Card.Actions>
           </Card>
 
@@ -74,7 +74,7 @@ const Games=()=>{
             </Card.Content>
             <Card.Actions >
             <TouchableOpacity onPress={()=>{Linking.openURL('https://github.com/caliphdev/herta_kuru')}}><Text style={{color:'blue'}}>More Info</Text></TouchableOpacity>
-            <TouchableOpacity onPress={()=>{nav.navigate('Kuru')}} style={[styles.button,{backgroundColor:'#ff0066'}]}><Text style={[styles.txt,{color:'white'}]}>PLAY NOW!</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{nav.navigate('Web',{data:1})}} style={[styles.button,{backgroundColor:'#ff0066'}]}><Text style={[styles.txt,{color:'white'}]}>PLAY NOW!</Text></TouchableOpacity>
           
             </Card.Actions>
           </Card>
