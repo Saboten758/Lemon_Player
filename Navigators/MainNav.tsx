@@ -19,8 +19,7 @@ const MainNav=()=>{
 
   }}>
       <Tab.Screen name="Player" component={Home}  />
-      <Tab.Screen name="Games" component={Games} />
-      <Tab.Screen name="Manga" component={Manga} />
+      
       <Tab.Screen name="Explore" component={Explore}/>
       <Tab.Screen name="Info" component={SettingsPage} />
       

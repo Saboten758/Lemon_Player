@@ -3,14 +3,13 @@ import { StyleSheet,Text, View, useWindowDimensions, ImageBackground } from 'rea
 import { ActivityIndicator } from 'react-native-paper';
 import { WebView } from 'react-native-webview';
 import Icon from 'react-native-vector-icons/FontAwesome';
-const Web = ({route}) => {
+const Web2 = ({route}) => {
     const { data } = route.params;
-    const window=useWindowDimensions()
   // Alert.alert("Google Auth Problem","Google Auth is not allowed for web views! Do You want to open on web instead?",[
   //   { text: 'Cancel', style: 'cancel' },
   //   { text: 'OK', onPress: () => Linking.openURL('https://game.granbluefantasy.jp') },
   // ],)
-const links=['https://web.simple-mmo.com','https://herta.eu.org','https://mangadex.org','https://manganato.com','https://toonily.com','https://playtictactoe.org/','https://alokpaul-movies-app.netlify.app/']
+
   
 const webviewRef = useRef(null);
 
@@ -27,9 +26,9 @@ const webviewRef = useRef(null);
   };
 
   const handleHomeNavigation = () => {
-    if (webviewRef.current && webviewRef.current!=links[data]) {
+    if (webviewRef.current) {
 
-        webviewRef.current.injectJavaScript(`window.location.href = "${links[data]}";`);
+        webviewRef.current.injectJavaScript(`window.location.href = "${data}";`);
     }
   };
 
@@ -46,7 +45,7 @@ return (
           <ActivityIndicator size="large" />
         </View>
       )}
-       allowsBackForwardNavigationGestures source={{ uri: links[data] }} style={{ flex: 1 }} />
+       allowsBackForwardNavigationGestures source={{ uri: data }} style={{ flex: 1 }} />
     
      
     {!(data===1 )&&(<View style={styles.bottomContainer}>
@@ -78,7 +77,7 @@ return (
   </View>
   )
 }
-export default Web
+export default Web2
 
 const styles = StyleSheet.create({
   container: {

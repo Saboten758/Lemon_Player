@@ -79,6 +79,25 @@ const Games=()=>{
             </Card.Actions>
           </Card>
 
+          <Card style={{margin:10,backgroundColor:'black'}} >
+            <Card.Content>
+              <Title style={{color:'white'}} >Tic Tac Toe</Title>
+            </Card.Content>
+            <Card.Cover
+              source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDkTwSg80-fPb_ispMP_aIFCkfo3EV3yQ3Xg&usqp=CAU'}}
+              
+            />
+            <Card.Content >
+              <Paragraph style={{flexWrap:'wrap',color:'white'}}>
+              Play Tic Tac Toe Single Player / Multiplayer
+              </Paragraph>
+        
+            </Card.Content>
+            <Card.Actions >
+            <TouchableOpacity onPress={()=>{nav.navigate('Web',{data:5})}} style={[styles.button,{backgroundColor:'#668cff',elevation:3}]}><Text style={styles.txt}>Play Now!</Text></TouchableOpacity>
+            </Card.Actions>
+          </Card>
+
 
 
 </View>
