@@ -5,6 +5,7 @@ import Home from "../Screens/Home";
 import SettingsPage from "../Screens/SettingsPage";
 import Games from "../Screens/Games";
 import Manga from "../Screens/Manga";
+import Explore from "../Screens/Explore";
 
 
 const Tab = createMaterialTopTabNavigator();
@@ -20,6 +21,7 @@ const MainNav=()=>{
       <Tab.Screen name="Player" component={Home}  />
       <Tab.Screen name="Games" component={Games} />
       <Tab.Screen name="Manga" component={Manga} />
+      <Tab.Screen name="Explore" component={Explore}/>
       <Tab.Screen name="Info" component={SettingsPage} />
       
     </Tab.Navigator>

@@ -9,8 +9,6 @@ import Music from "../Screens/Music";
 
 import Gran from "../Others/GranBlue";
 
-import Mangato from "../Others/Mangato";
-import Toonily from "../Others/Toonily";
 
 
 import Web from "../Others/Web";
@@ -36,9 +34,7 @@ const Root=()=>{
           },
           headerTintColor: 'white',
         })}/>
-        {/* <Stack.Screen  name="Web" component={MyWebComponent} options={{
-            headerShown:false
-        }}/> */}
+     
         <Stack.Screen  name="Web" component={Web}  options={{
             headerShown:false
             

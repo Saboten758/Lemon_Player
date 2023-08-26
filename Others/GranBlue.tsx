@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, StyleSheet, TouchableHighlight, View, Linking } from 'react-native';
+import { ActivityIndicator } from 'react-native-paper';
 import { WebView } from 'react-native-webview';
 
 const Gran = ({route}) => {
@@ -13,7 +14,12 @@ const Gran = ({route}) => {
 
   return (
     <View style={styles.container}>
-  <WebView source={{ uri: !data?'https://game.granbluefantasy.jp/#mypage':'https://game.granbluefantasy.jp/#authentication' }} userAgent={data?"Chrome/58.0.3029.110":""} allowsBackForwardNavigationGestures={true} thirdPartyCookiesEnabled={true}  style={styles.webView}  />
+  <WebView startInLoadingState
+      renderLoading={() => (
+        <View style={{flex: 1, alignItems: 'center' }}>
+          <ActivityIndicator size="large" />
+        </View>
+      )}source={{ uri: !data?'https://game.granbluefantasy.jp/#mypage':'https://game.granbluefantasy.jp/#authentication' }} userAgent={data?"Chrome/58.0.3029.110":""} allowsBackForwardNavigationGestures={true} thirdPartyCookiesEnabled={true}  style={styles.webView}  />
   </View>
   )
 }
