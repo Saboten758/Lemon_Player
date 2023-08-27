@@ -4,18 +4,13 @@ import { StyleSheet, Text, View,Image, ScrollView, TouchableOpacity, FlatList, L
 import { Card } from "react-native-paper";
 import * as rssParser from 'react-native-rss-parser';
 type ItemProps = {title: string};
-
+import { Dropdown } from 'react-native-element-dropdown';
 
 const Explore=()=>{
+    const [curr,setCurr]=useState(0)
+
     const nav=useNavigation()
-    const Item = ({title}: ItemProps) => (
-        
-        <TouchableOpacity onPress={()=>{nav.navigate('Web2',{data:title.links[0].url})}}>
-      <View style={styles.item}>
-        <Text style={styles.txt3}>{title.title}</Text>
-      </View>
-      </TouchableOpacity>
-    );
+   
     
     var currentdate = new Date(); 
     const timeslot=["Morning","Day","Afternoon","Evening","Night"]
@@ -26,16 +21,39 @@ const Explore=()=>{
     require('../assets/night.jpg'),]
     const [x,setx]=useState("")
     const [head,setHead]=useState("")
-   useEffect(()=>{
-    fetch('https://www.animenewsnetwork.com/all/rss.xml?ann-edition=us').then((response) => response.text())
+    const feeds=['https://www.animenewsnetwork.com/all/rss.xml?ann-edition=us','https://90sanime.com/feed/','https://prod-qt-images.s3.amazonaws.com/production/filmcompanion/feed.xml','https://lwlies.com/feed/']
+   
+   const a=()=>{
+    fetch(feeds[curr]).then((response) => response.text())
   .then((responseData) => rssParser.parse(responseData))
   .then((rss) => {
     setHead(rss.title);
     setx(rss.items);
+  
+   })}
+   useEffect(a,[curr])
+  
+  
+   const Item = ({title}: ItemProps) => (
+        
+    <View >
+    <TouchableOpacity onPress={()=>{nav.navigate('Web2',{data:title.links[0].url})}}>
+           
+  <View style={styles.item}>
+    <Text style={styles.txt3}>{title.title}</Text>
     
+  </View>
+  </TouchableOpacity>
+    </View>
+);
 
-    } )},[])
-
+  const data = [
+    { label: 'Anime News Network', value: '0' },
+    { label: '90s anime.com', value: '1' },
+    { label: 'Film Companinion', value: '2' },
+    { label: 'Little White Lies', value: '3' },
+  ];
+  const [value, setValue] = useState(null);
     var key=0
     if (currentdate.getHours()>=1 && currentdate.getHours()<=10) {
         key=0
@@ -54,6 +72,9 @@ const Explore=()=>{
     }
     const hed=()=>(<View style={{backgroundColor:'#3D3C49',padding:10}}><Text style={styles.title}>{head}</Text></View>)
     const sep=()=>(<View style={{borderWidth:1,borderColor:'black'}}/>)
+    
+   
+    
     return(
         <>
         <View style={styles.head}>
@@ -73,7 +94,7 @@ const Explore=()=>{
                 <Card.Cover
                 source={require('../assets/arcade.jpg')} resizeMode="stretch"
                 />
-                <Text style={styles.txt2}>Web Games</Text>
+                <Text style={styles.txt2}>Web Games </Text>
                 </Card>
                 </TouchableOpacity>
 
@@ -92,11 +113,34 @@ const Explore=()=>{
                 <Card.Cover
                 source={{uri:'https://hips.hearstapps.com/hmg-prod/images/best-fall-movies-1659459329.jpg?crop=0.8297972654408298xw:1xh;center,top&resize=1200:*'}}
                 />
-                <Text style={styles.txt2}>Movies</Text>
+                <Text style={styles.txt2}>Movies </Text>
                 </Card>
                 </TouchableOpacity>
                 </ScrollView>
-            
+                <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                    <Text style={styles.txt3}>Feed: </Text>
+                <Dropdown
+        style={styles.dropdown}
+        placeholderStyle={styles.txt3}
+        selectedTextStyle={styles.txt3}
+        inputSearchStyle={styles.txt4}
+        itemTextStyle={styles.txt3}
+        data={data}
+        search
+        maxHeight={300}
+        labelField="label"
+        valueField="value"
+        placeholder="Anime News"
+        searchPlaceholder="Search..."
+        value={value}
+        onChange={item => {
+          setValue(item);
+          setCurr(item.value);  
+        
+        }}
+        
+      />
+                </View>
             </View>
         </View>
         <View style={{alignItems:'center',flex:1,backgroundColor:'#ffffe6'}}>
@@ -139,7 +183,7 @@ const styles=StyleSheet.create({
         backgroundColor:'#ffffcc',
         alignItems:'center',
         justifyContent:'center',
-        height:80,
+        height:70,
         padding:10,
         width:100,
         margin:20,
@@ -173,11 +217,13 @@ const styles=StyleSheet.create({
         fontFamily:'Caveat-VariableFont_wght',
         fontSize:25
     },
+    txt4:{
+        color:'black',
+        fontFamily:'Caveat-VariableFont_wght',
+        fontSize:20
+    },
     item: {
-       
         padding: 10,
-      
-        
         marginVertical: 2,
         marginHorizontal: 16,
       },
@@ -186,5 +232,13 @@ const styles=StyleSheet.create({
         fontFamily:'BebasNeue-Regular',
         fontSize: 45,
         textAlign:'center'
+      },
+      dropdown: {
+        margin: 16,
+        height: 30,
+        width:200,
+        
+        borderBottomColor: 'gray',
+        borderBottomWidth: 0.5,
       },
 })
