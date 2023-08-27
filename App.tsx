@@ -1,11 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Root from "./Navigators/Root";
 import BootSplash from "react-native-bootsplash";
-import { ToastAndroid } from "react-native";
+import { Alert, Linking, ToastAndroid } from "react-native";
+import axios from "axios";
 const App=()=>{
+
+  const [latestVersion, setLatestVersion] = useState("");
+  const currentVersion = "1.1"; 
+
   useEffect(() => {
     const init = async () => {
-      // …do multiple sync or async tasks
+      axios.get("https://api.github.com/repos/Saboten758/Lemon_Player/releases/latest")
+      .then(response => {
+        const latestRelease = response.data;
+        setLatestVersion(latestRelease.tag_name);
+
+        if (latestRelease.tag_name !== currentVersion) {
+          console.log(latestRelease.tag_name)
+          Alert.alert("Your app is not up to date!","Please update to the latest version on Github",[{text:'Open Github',onPress: ()=>Linking.openURL("https:github.com/Saboten758/Lemon_Player/releases/latest")},{text:'Cancel'}]);
+        }
+        else{
+          ToastAndroid.showWithGravity("Your App is upto date!",1000,9)
+        }
+      })
+      .catch(error => {
+        Alert.alert("Error","New Version cann't be fetched from GitHub! Check Your Internet Connection!");
+      });
     };
 
     init().finally(async () => {
