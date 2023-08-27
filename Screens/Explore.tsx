@@ -16,7 +16,7 @@ const Explore=()=>{
     const timeslot=["Morning","Day","Afternoon","Evening","Night"]
     const imgs=[require('../assets/morning.jpg'),
     require('../assets/day.jpg'),
-    require('../assets/morning.jpg'),
+    require('../assets/afternoon.jpg'),
     require('../assets/eve.jpg'),
     require('../assets/night.jpg'),]
     const [x,setx]=useState("")
@@ -63,10 +63,10 @@ const Explore=()=>{
     else if(currentdate.getHours()>10 && currentdate.getHours()<12){
         key=1
     }
-    else if(currentdate.getHours()>=12 && currentdate.getHours()<16){
+    else if(currentdate.getHours()>=12 && currentdate.getHours()<17){
         key=2
     }
-    else if(currentdate.getHours()>=16 && currentdate.getHours()<20){
+    else if(currentdate.getHours()>=17 && currentdate.getHours()<20){
         key=3
     }
     else if(currentdate.getHours()>=20 && currentdate.getHours()<=24){
@@ -94,7 +94,7 @@ const Explore=()=>{
                 <Card style={{margin:10,backgroundColor:'#3D3C49',width:270,height:240}} >
                 
                 <Card.Cover
-                source={require('../assets/arcade.jpg')} resizeMode="stretch"
+                source={require('../assets/arcade.gif')} resizeMode="stretch"
                 />
                 <Text style={styles.txt2}>Web Games </Text>
                 </Card>
@@ -104,18 +104,18 @@ const Explore=()=>{
                 <Card style={{margin:10,backgroundColor:'#3D3C49',width:270,height:240}} >
                 
                 <Card.Cover
-                source={require('../assets/manga.jpg')} resizeMode="stretch"/>
+                source={require('../assets/manga.gif')} resizeMode="stretch"/>
                 <Text style={styles.txt2}>Manga</Text>
                 </Card>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={()=>{nav.navigate('Web',{data:6})}} > 
+                <TouchableOpacity onPress={()=>{nav.navigate('Shows')}} > 
                 <Card style={{margin:10,backgroundColor:'#3D3C49',width:270,height:240}} >
                 
                 <Card.Cover
-                source={{uri:'https://hips.hearstapps.com/hmg-prod/images/best-fall-movies-1659459329.jpg?crop=0.8297972654408298xw:1xh;center,top&resize=1200:*'}}
+                source={require('../assets/manga2.jpg')}
                 />
-                <Text style={styles.txt2}>Movies </Text>
+                <Text style={styles.txt2}>T.V Shows </Text>
                 </Card>
                 </TouchableOpacity>
                 </ScrollView>

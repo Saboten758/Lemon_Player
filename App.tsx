@@ -6,7 +6,7 @@ import axios from "axios";
 const App=()=>{
 
   const [latestVersion, setLatestVersion] = useState("");
-  const currentVersion = "1.1"; 
+  const currentVersion = "1.2"; 
 
   useEffect(() => {
     const init = async () => {
@@ -16,7 +16,7 @@ const App=()=>{
         setLatestVersion(latestRelease.tag_name);
 
         if (latestRelease.tag_name !== currentVersion) {
-          console.log(latestRelease.tag_name)
+    
           Alert.alert("Your app is not up to date!","Please update to the latest version on Github",[{text:'Open Github',onPress: ()=>Linking.openURL("https:github.com/Saboten758/Lemon_Player/releases/latest")},{text:'Cancel'}]);
         }
         else{

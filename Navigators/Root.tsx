@@ -15,6 +15,7 @@ import Web from "../Others/Web";
 import Games from "../Screens/Games";
 import Manga from "../Screens/Manga";
 import Web2 from "../Others/Web2";
+import Shows from "../Screens/Shows";
 
 const Stack=createNativeStackNavigator();
 
@@ -46,13 +47,20 @@ const Root=()=>{
             headerShown:false
             
         }}/>
-
+        
         <Stack.Screen  name="Gran" component={Gran}  options={{
             headerShown:false
             
         }}/>
         <Stack.Screen name="Games" component={Games} options={() => ({
           headerTitle: (props) => <LogoTitle {...props} name={"Games"} />,
+          headerStyle: {
+            backgroundColor: '#3D3C49',
+          },
+          headerTintColor: 'white',
+        })}/>
+        <Stack.Screen name="Shows" component={Shows} options={() => ({
+          headerTitle: (props) => <LogoTitle {...props} name={"T.V. Shows"} />,
           headerStyle: {
             backgroundColor: '#3D3C49',
           },

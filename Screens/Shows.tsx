@@ -1,73 +1,76 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { View,ScrollView,TouchableOpacity,StyleSheet,Text } from 'react-native'
+import { View,ScrollView,TouchableOpacity,StyleSheet,Text, Linking } from 'react-native'
 import { Card, Paragraph, Title } from 'react-native-paper'
 
-const Manga=()=>{
+const Shows=()=>{
     const nav=useNavigation()
     return(
         <ScrollView style={{backgroundColor:"#668285"}}>
             <View style={{alignItems:'center'}}>
             <Text style={styles.webg} >
-                MANGA
-            </Text>
+                ANIME </Text>
             </View>
           <View>
           <Card style={{margin:10,backgroundColor:'#333333'}} >
             <Card.Content>
-              <Title style={{color:'white'}} >MangaDex</Title>
+              <Title style={{color:'white'}} >Anix</Title>
             </Card.Content>
             <Card.Cover
-              source={{uri:'https://pbs.twimg.com/profile_images/1391016345714757632/xbt_jW78_400x400.jpg'}}
+              source={{uri:'https://anix-shop.fi/wp-content/uploads/2019/10/demo-logo.png'}}
               
             />
             <Card.Content >
               <Paragraph style={{flexWrap:'wrap',color:'white'}}>
-              Read manga online for free on MangaDex with no ads, high quality images and support scanlation groups!
+              Anix is a game-changing platform for anime enthusiasts, providing a simple and minimal interface akin to AnimixPlay, alongside an array of additional features.
               </Paragraph>
         
             </Card.Content>
             <Card.Actions >
-            <TouchableOpacity onPress={()=>{nav.navigate('Web',{data:2})}} style={[styles.button,{backgroundColor:'#ff6600',elevation:3}]}><Text style={styles.txt}>MangaDex</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{nav.navigate('Web',{data:7})}} style={[styles.button,{backgroundColor:'#99ccff',elevation:3}]}><Text style={styles.txt}>Go To</Text></TouchableOpacity>
             </Card.Actions>
           </Card>
-
-          <Card style={{margin:10,backgroundColor:'#F7F4EB'}} >
+          <View style={{alignItems:'center'}}>
+            <Text style={styles.webg} >
+            Recommendations </Text>
+            </View>
+          
+          <Card style={{margin:10,backgroundColor:'#ffffcc'}} >
             <Card.Content>
-              <Title  >Mangato</Title>
+              <Title  >Movie Recomendations</Title>
             </Card.Content>
             <Card.Cover
-              source={{uri:'https://s3.amazonaws.com/shonenjump.viz.com/drupal/art/knight.jpg'}}
+              source={{uri:'https://hips.hearstapps.com/hmg-prod/images/summer-movies-1587392939.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*'}}
               
             />
             <Card.Content >
               <Paragraph style={{flexWrap:'wrap'}}>
-              Read manga online free at MangaNato, update fastest, most full, synthesized 24h free with high-quality images. We hope to bring you happy moments.
+              Get Latest Movie recomendations
               </Paragraph>
         
             </Card.Content>
             <Card.Actions >
-            <TouchableOpacity onPress={()=>{nav.navigate('Web',{data:3})}} style={[styles.button,{backgroundColor:'#333333'}]}><Text style={[styles.txt,{color:'white'}]}>Mangato</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{nav.navigate('Web',{data:6})}} style={[styles.button,{backgroundColor:'#333333'}]}><Text style={[styles.txt,{color:'white'}]}>Go TO</Text></TouchableOpacity>
 
             </Card.Actions>
           </Card>
 
-          <Card style={{margin:10,backgroundColor:'#8DBE5A'}} >
+          <Card style={{margin:10,backgroundColor:'#003399'}} >
             <Card.Content>
-              <Title  >Toonily</Title>
+              <Title style={{color:'white'}} >AniList</Title>
             </Card.Content>
             <Card.Cover
-              source={{uri:'https://images.alphacoders.com/107/1071074.png'}}
+              source={{uri:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/AniList_logo.svg/1200px-AniList_logo.svg.png'}}
               
             />
             <Card.Content >
-              <Paragraph style={{flexWrap:'wrap'}}>
-              Read your favorite premium manhwa from leading korean manhwa publishers translated to english for free. Read Manhwa Online. Updated Daily!
+              <Paragraph style={{flexWrap:'wrap',color:'white'}}>
+              The next-generation anime platform. Track, share, and discover your favorite anime and manga with AniList.
               </Paragraph>
         
             </Card.Content>
             <Card.Actions >
-            <TouchableOpacity onPress={()=>{nav.navigate('Web',{data:4})}} style={[styles.button,{backgroundColor:'#00b300',marginTop:1}]}><Text style={[styles.txt,{color:'white'}]}>Toonily</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{nav.navigate('Web',{data:8})}} style={[styles.button,{backgroundColor:'white',marginTop:1}]}><Text style={[styles.txt,{color:'black'}]}>Go To</Text></TouchableOpacity>
 
             </Card.Actions>
           </Card>
@@ -78,7 +81,7 @@ const Manga=()=>{
     )
 }
 
-export default Manga
+export default Shows
 
 const styles=StyleSheet.create({
     web:{

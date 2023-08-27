@@ -10,7 +10,9 @@ const Web = ({route}) => {
   //   { text: 'Cancel', style: 'cancel' },
   //   { text: 'OK', onPress: () => Linking.openURL('https://game.granbluefantasy.jp') },
   // ],)
-const links=['https://web.simple-mmo.com','https://herta.eu.org','https://mangadex.org','https://manganato.com','https://toonily.com','https://playtictactoe.org/','https://alokpaul-movies-app.netlify.app/']
+const links=['https://web.simple-mmo.com','https://herta.eu.org','https://mangadex.org',
+'https://manganato.com','https://toonily.com','https://playtictactoe.org/','https://alokpaul-movies-app.netlify.app/',
+'https://anix.to/home','https://anilist.co/']
   
 const webviewRef = useRef(null);
 
@@ -49,7 +51,7 @@ return (
        allowsBackForwardNavigationGestures source={{ uri: links[data] }} style={{ flex: 1 }} />
     
      
-    {!(data===1 )&&(<View style={styles.bottomContainer}>
+    {!(data===1 || (data>6&&data<=7) )&&(<View style={styles.bottomContainer}>
     
     <ImageBackground resizeMode='cover'  source={require('../assets/mood.gif')} style={styles.bottom}>
      <Icon.Button

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {ImageBackground,SafeAreaView,StyleSheet,Text,View,FlatList,ActivityIndicator,TouchableOpacity,Image, ScrollView, Dimensions, useWindowDimensions} from 'react-native';
+import {ImageBackground,SafeAreaView,StyleSheet,Text,View,FlatList,ActivityIndicator,TouchableOpacity, Dimensions, useWindowDimensions} from 'react-native';
 import TrackPlayer, {
     useTrackPlayerEvents,
     usePlaybackState,

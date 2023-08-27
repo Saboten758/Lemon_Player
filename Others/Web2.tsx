@@ -5,10 +5,6 @@ import { WebView } from 'react-native-webview';
 import Icon from 'react-native-vector-icons/FontAwesome';
 const Web2 = ({route}) => {
     const { data } = route.params;
-  // Alert.alert("Google Auth Problem","Google Auth is not allowed for web views! Do You want to open on web instead?",[
-  //   { text: 'Cancel', style: 'cancel' },
-  //   { text: 'OK', onPress: () => Linking.openURL('https://game.granbluefantasy.jp') },
-  // ],)
 
   
 const webviewRef = useRef(null);

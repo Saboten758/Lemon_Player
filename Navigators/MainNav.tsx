@@ -3,8 +3,6 @@ import { Dimensions } from "react-native";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Home from "../Screens/Home";
 import SettingsPage from "../Screens/SettingsPage";
-import Games from "../Screens/Games";
-import Manga from "../Screens/Manga";
 import Explore from "../Screens/Explore";
 
 

@@ -34,7 +34,7 @@ const SettingsPage=()=>{
             <TouchableOpacity style={[styles.buttonz,{backgroundColor:'#ff0000'}]}onPress={()=>{Linking.openURL("https://saboten123.itch.io")}}><Text style={[styles.txt2,{color:'black'}]}>itch.io</Text></TouchableOpacity>
             </View>
             </View>
-            
+            <Text style={{color:'white'}}>Lemon Player Version 1.2</Text>
           
             
         </View>
