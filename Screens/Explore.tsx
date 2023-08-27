@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useRef, useState } from "react";
-import { StyleSheet, Text, View,Image, ScrollView, TouchableOpacity, FlatList, Linking } from "react-native"
+import { StyleSheet, Text, View,Image, ScrollView, TouchableOpacity, FlatList, Linking, ToastAndroid } from "react-native"
 import { Card } from "react-native-paper";
 import * as rssParser from 'react-native-rss-parser';
 type ItemProps = {title: string};
@@ -21,7 +21,7 @@ const Explore=()=>{
     require('../assets/night.jpg'),]
     const [x,setx]=useState("")
     const [head,setHead]=useState("")
-    const feeds=['https://www.animenewsnetwork.com/all/rss.xml?ann-edition=us','https://90sanime.com/feed/','https://prod-qt-images.s3.amazonaws.com/production/filmcompanion/feed.xml','https://lwlies.com/feed/']
+    const feeds=['https://www.animenewsnetwork.com/all/rss.xml?ann-edition=us','https://90sanime.com/feed/','https://prod-qt-images.s3.amazonaws.com/production/filmcompanion/feed.xml','https://lwlies.com/feed/','https://kotaku.com/rss']
    
    const a=()=>{
     fetch(feeds[curr]).then((response) => response.text())
@@ -48,10 +48,12 @@ const Explore=()=>{
 );
 
   const data = [
-    { label: 'Anime News Network', value: '0' },
-    { label: '90s anime.com', value: '1' },
-    { label: 'Film Companinion', value: '2' },
-    { label: 'Little White Lies', value: '3' },
+    { label: 'Anime News Network', value: '0',data:'All anime& manga news' },
+    { label: 'Kotaku', value: '4',data:'Kotaku is the definitive digital hub for video game news, reviews, cheats, design, and entertainment' },
+    { label: '90s anime.com', value: '1',data:'90s anime blog feed' },
+    { label: 'Film Companinion', value: '2',data:'Indian Films' },
+    { label: 'Little White Lies', value: '3',data:"The world's most beautiful film magazine" },
+    
   ];
   const [value, setValue] = useState(null);
     var key=0
@@ -134,6 +136,7 @@ const Explore=()=>{
         searchPlaceholder="Search..."
         value={value}
         onChange={item => {
+          ToastAndroid.show(item.data,ToastAndroid.SHORT)
           setValue(item);
           setCurr(item.value);  
         
