@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useRef, useState } from "react";
-import { StyleSheet, Text, View,Image, ScrollView, TouchableOpacity, FlatList, Linking, ToastAndroid } from "react-native"
+import { StyleSheet, Text, View,Image, ScrollView, TouchableOpacity, FlatList, Linking, ToastAndroid, useWindowDimensions } from "react-native"
 import { Card } from "react-native-paper";
 import * as rssParser from 'react-native-rss-parser';
 type ItemProps = {title: string};
@@ -8,7 +8,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 
 const Explore=()=>{
     const [curr,setCurr]=useState(0)
-
+    const window=useWindowDimensions()
     const nav=useNavigation()
    
     

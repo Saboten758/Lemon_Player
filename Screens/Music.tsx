@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {ImageBackground,SafeAreaView,StyleSheet,Text,View,FlatList,ActivityIndicator,TouchableOpacity,Image, ScrollView, Dimensions} from 'react-native';
+import {ImageBackground,SafeAreaView,StyleSheet,Text,View,FlatList,ActivityIndicator,TouchableOpacity,Image, ScrollView, Dimensions, useWindowDimensions} from 'react-native';
 import TrackPlayer, {
     useTrackPlayerEvents,
     usePlaybackState,
@@ -29,9 +29,10 @@ import axios from 'axios';
       </View>
     );
   }
-  function Header() {
+  const Header=()=> {
     const [width,setWidth]=useState(Dimensions.get('window').width)
     const [info, setInfo] = useState({});
+    const window=useWindowDimensions()
     useEffect(() => {
       setTrackInfo();
       const handle=async()=>{
@@ -64,7 +65,7 @@ import axios from 'axios';
       </View>
       </View>
     );}
-  function Playlist() {
+  const Playlist=()=>{
     const [width,setWidth] =useState(Dimensions.get('window').width)
     const [queue, setQueue] = useState([]);
     const [currentTrack, setCurrentTrack] = useState(0);
@@ -91,6 +92,7 @@ import axios from 'axios';
     const sep=()=>(
       <View style={{borderWidth:1,borderColor:'white',width:'auto'}}/>
     )
+
     function PlaylistItem({index, title, isCurrent}) {
   
       function handleItemPress() {
@@ -115,9 +117,10 @@ import axios from 'axios';
       
         loadPlaylist()
       }
+      const window=useWindowDimensions()
     return(
       <View>
-        <View style={[styles.playlist,{width:width-40}]}>
+        <View style={[styles.playlist,{width:width-40,height:window.height-700}]}>
           <FlatList
             ItemSeparatorComponent={sep}
             data={queue}
@@ -128,7 +131,10 @@ import axios from 'axios';
             }
           />
         </View>
+        <View style={{alignItems:'center',justifyContent:'center',}}>
         <Controls onShuffle={handleShuffle}/>
+        </View>
+        
       </View>
     );
   }
@@ -155,7 +161,7 @@ import axios from 'axios';
             onPress={() => TrackPlayer.skipToPrevious()}/>
           <Icon.Button
             name={playerState == State.Playing ? 'pause' : 'play'}
-            size={28}
+            size={40}
             backgroundColor="transparent"
             onPress={handlePlayPress}/>
           <Icon.Button
@@ -172,8 +178,8 @@ import axios from 'axios';
     );
   }
 
-function Music() {
-  
+const Music=()=>{
+  const window=useWindowDimensions()
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const [back,setBack]=useState("")
   const [pick,setPick]=useState(0)
@@ -215,7 +221,7 @@ function Music() {
   if(!isPlayerReady) {
     return (
       <SafeAreaView style={styles.container}>
-        <ActivityIndicator size="large" color="#bbb"/>
+        <ActivityIndicator size="large" />
       </SafeAreaView>
     );
   }
@@ -229,11 +235,11 @@ function Music() {
       <Card>
       <Card.Cover
               source={back?{uri:back}:require('../assets/mood.gif')}
-              style={[styles.city,{width:width-40}]}
+              style={[styles.city,{width:width-40,height:window.height-670}]}
             />
       </Card>
       <Playlist/>
-      <TouchableOpacity style={styles.button} onPress={Night}><Text style={styles.txt}>Nightwave Plaza Song Preview</Text></TouchableOpacity>
+      <TouchableOpacity style={[styles.button]} onPress={Night}><Text style={styles.txt}>Nightwave Plaza Song Preview</Text></TouchableOpacity>
       <TrackProgress/>
       <Header/>
     </ImageBackground>
@@ -245,8 +251,8 @@ const styles = StyleSheet.create({
     position:'relative',
     flex: 1,
     justifyContent: 'center',
-    alignItems:"flex-start",
-    padding: 20,
+    alignItems:"center",
+    padding: 10,
     backgroundColor: '#a8c0c8',
     
     
@@ -257,6 +263,7 @@ const styles = StyleSheet.create({
     backgroundColor:'black',
     marginBottom: 40,
     borderRadius:20,
+    
     height:170,
     width:380,
     position:'relative',
@@ -276,6 +283,7 @@ const styles = StyleSheet.create({
     marginTop:2,
     padding: 4,
     shadowColor: 'black',
+    
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
