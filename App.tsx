@@ -3,12 +3,13 @@ import Root from "./Navigators/Root";
 import BootSplash from "react-native-bootsplash";
 import { Alert, Linking, ToastAndroid } from "react-native";
 import axios from "axios";
+import SystemNavigationBar from "react-native-system-navigation-bar";
 
 const App=()=>{
 
   const [latestVersion, setLatestVersion] = useState("");
   const currentVersion = "1.3"; 
-
+  SystemNavigationBar.setNavigationColor('#3D3C49')
   useEffect(() => {
     const init = async () => {
       axios.get("https://api.github.com/repos/Saboten758/Lemon_Player/releases/latest")
