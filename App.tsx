@@ -7,7 +7,7 @@ import axios from "axios";
 const App=()=>{
 
   const [latestVersion, setLatestVersion] = useState("");
-  const currentVersion = "1.2"; 
+  const currentVersion = "1.3"; 
 
   useEffect(() => {
     const init = async () => {
