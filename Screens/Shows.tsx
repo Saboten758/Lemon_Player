@@ -1,9 +1,12 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { View,ScrollView,TouchableOpacity,StyleSheet,Text, Linking } from 'react-native'
+import { View,ScrollView,TouchableOpacity,StyleSheet,Text } from 'react-native'
 import { Card, Paragraph, Title } from 'react-native-paper'
 
+
 const Shows=()=>{
+
+
     const nav=useNavigation()
     return(
         <ScrollView style={{backgroundColor:"#668285"}}>

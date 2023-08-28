@@ -1,10 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect } from "react";
 import { View,StyleSheet,Text, Dimensions, TouchableOpacity } from "react-native";
 import { Card } from "react-native-paper";
+import SystemNavigationBar from "react-native-system-navigation-bar";
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const Home=()=>{
-  
+  useEffect( ()=>{SystemNavigationBar.navigationShow()},[])
+ 
   const nav=useNavigation()
     return(
       
@@ -16,7 +19,7 @@ const Home=()=>{
               style={[styles.city,{width:Dimensions.get("screen").width-40}]}
             />
       </Card>
-          <TouchableOpacity style={styles.button}onPress={()=>{nav.navigate('Music')}}><Text style={styles.txt}>Plaza Radio & More</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.button}onPress={()=>{nav.navigate('Music')}}><Text style={styles.txt}>Plaza Radio & More</Text><Icon name="play" color={'#cccccc'} size={15}style={{marginStart:5}}/></TouchableOpacity>
      
         </View>
     )
@@ -43,11 +46,12 @@ const styles=StyleSheet.create({
    },
     button:{
       borderRadius:20,
+      flexDirection:'row',
       backgroundColor:'black',
       alignItems:'center',
       justifyContent:'center',
       height:80,
-      width:100,
+      width:120,
       padding:10,
       margin:20
     },

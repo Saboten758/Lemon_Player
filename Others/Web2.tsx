@@ -3,10 +3,11 @@ import { StyleSheet,Text, View, useWindowDimensions, ImageBackground } from 'rea
 import { ActivityIndicator } from 'react-native-paper';
 import { WebView } from 'react-native-webview';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
 const Web2 = ({route}) => {
     const { data } = route.params;
 
-  
+ 
 const webviewRef = useRef(null);
 
   const handleBackNavigation = () => {

@@ -4,7 +4,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import Home from "../Screens/Home";
 import SettingsPage from "../Screens/SettingsPage";
 import Explore from "../Screens/Explore";
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createMaterialTopTabNavigator();
 const MainNav=()=>{
@@ -14,12 +14,27 @@ const MainNav=()=>{
       tabBarStyle: { backgroundColor: '#3D3C49'},
       tabBarActiveTintColor: "#AD8C9C",
       tabBarInactiveTintColor: '#E3F4F6',
+      tabBarShowLabel:false
 
   }}>
-      <Tab.Screen name="Player" component={Home}  />
-      
-      <Tab.Screen name="Explore" component={Explore}/>
-      <Tab.Screen name="Info" component={SettingsPage} />
+      <Tab.Screen name="Player" component={Home} options={{
+     
+          tabBarIcon: ({ color }) => (
+            <Icon name="music" size={18} color={color} />
+          ),
+        }} />
+      <Tab.Screen name="Explore" component={Explore} options={{
+     
+     tabBarIcon: ({ color }) => (
+       <Icon name="coffee" size={18} color={color} />
+     ),
+   }} />
+      <Tab.Screen name="Info" component={SettingsPage} options={{
+     
+     tabBarIcon: ({ color }) => (
+       <Icon name="lemon-o" size={18} color={color} />
+     ),
+   }} />
       
     </Tab.Navigator>
   );

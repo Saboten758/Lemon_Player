@@ -3,6 +3,7 @@ import Root from "./Navigators/Root";
 import BootSplash from "react-native-bootsplash";
 import { Alert, Linking, ToastAndroid } from "react-native";
 import axios from "axios";
+
 const App=()=>{
 
   const [latestVersion, setLatestVersion] = useState("");

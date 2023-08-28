@@ -5,12 +5,14 @@ import { Card } from "react-native-paper";
 import * as rssParser from 'react-native-rss-parser';
 type ItemProps = {title: string};
 import { Dropdown } from 'react-native-element-dropdown';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 const Explore=()=>{
     const [curr,setCurr]=useState(0)
     const window=useWindowDimensions()
     const nav=useNavigation()
-   
+    
     
     var currentdate = new Date(); 
     const timeslot=["Morning","Day","Afternoon","Evening","Night"]
@@ -18,7 +20,7 @@ const Explore=()=>{
     require('../assets/day.jpg'),
     require('../assets/afternoon.jpg'),
     require('../assets/eve.jpg'),
-    require('../assets/night.jpg'),]
+    require('../assets/night.jpg'),require('../assets/mid.jpg')]
     const [x,setx]=useState("")
     const [head,setHead]=useState("")
     const feeds=['https://www.animenewsnetwork.com/all/rss.xml?ann-edition=us','https://90sanime.com/feed/','https://prod-qt-images.s3.amazonaws.com/production/filmcompanion/feed.xml','https://lwlies.com/feed/','https://kotaku.com/rss']
@@ -57,8 +59,11 @@ const Explore=()=>{
   ];
   const [value, setValue] = useState(null);
     var key=0
-    if (currentdate.getHours()>=1 && currentdate.getHours()<=10) {
+    if (currentdate.getHours()>=5 && currentdate.getHours()<=10) {
         key=0
+    }
+    else if(currentdate.getHours()>=1 && currentdate.getHours()<5){
+      key=5
     }
     else if(currentdate.getHours()>10 && currentdate.getHours()<12){
         key=1
@@ -82,7 +87,8 @@ const Explore=()=>{
         <View style={styles.head}>
         <Image style={styles.img} resizeMode={'cover'} source={imgs[key]}/>
        
-            <Text style={styles.txt}>Good {timeslot[key]}! </Text>
+            {key<5&&(<Text style={styles.txt}>Good {timeslot[key]}! </Text>)}
+            {key==5&&(<Text style={[styles.txt,{color:'#f2f2f2'}]}>Midnight! </Text>)}
             
             
         </View>
@@ -91,31 +97,31 @@ const Explore=()=>{
             <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
             <ScrollView horizontal={true} style={{paddingVertical: 10}} indicatorStyle={'black'} persistentScrollbar={true}>
                 <TouchableOpacity onPress={()=>{nav.navigate('Games')}}>
-                <Card style={{margin:10,backgroundColor:'#3D3C49',width:270,height:240}} >
+                <Card style={{margin:10,backgroundColor:'#3D3C49',width:270}} >
                 
                 <Card.Cover
-                source={require('../assets/arcade.gif')} resizeMode="stretch"
+                source={require('../assets/arcade.gif')} resizeMode="stretch" style={{height:189}}
                 />
-                <Text style={styles.txt2}>Web Games </Text>
+                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}><Text style={styles.txt2}>Web Games </Text><Icon style={{marginStart:5}}size={21} name="cards-playing-heart-multiple-outline"/></View>
                 </Card>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={()=>{nav.navigate('Manga')}}>
-                <Card style={{margin:10,backgroundColor:'#3D3C49',width:270,height:240}} >
+                <Card style={{margin:10,backgroundColor:'#3D3C49',width:270}} >
                 
                 <Card.Cover
-                source={require('../assets/manga.gif')} resizeMode="stretch"/>
-                <Text style={styles.txt2}>Manga</Text>
+                source={require('../assets/manga.gif')} resizeMode="stretch" style={{height:189}}/>
+                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}><Text style={styles.txt2}>Manga </Text><Icon style={{marginStart:5}}size={21} name="book-open-page-variant-outline"/></View>
                 </Card>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={()=>{nav.navigate('Shows')}} > 
-                <Card style={{margin:10,backgroundColor:'#3D3C49',width:270,height:240}} >
+                <Card style={{margin:10,backgroundColor:'#3D3C49',width:270}}  >
                 
                 <Card.Cover
-                source={require('../assets/manga2.jpg')}
+                source={require('../assets/manga2.jpg')} style={{height:189}} resizeMode="stretch"
                 />
-                <Text style={styles.txt2}>T.V Shows </Text>
+                <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}><Text style={styles.txt2}>T.V. Shows </Text><Icon style={{marginStart:5}}size={21} name="yin-yang"/></View>
                 </Card>
                 </TouchableOpacity>
                 </ScrollView>

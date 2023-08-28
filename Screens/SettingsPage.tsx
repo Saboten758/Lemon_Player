@@ -1,8 +1,7 @@
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View,StyleSheet,Text, ScrollView,TouchableOpacity, Linking,Dimensions } from "react-native";
 import { Card } from "react-native-paper";
-
+import Icon from 'react-native-vector-icons/FontAwesome5Pro';
 
 const SettingsPage=()=>{
   
@@ -18,7 +17,7 @@ const SettingsPage=()=>{
             />
       </Card>
         
-          <TouchableOpacity onPress={()=>{Linking.openSettings()}} style={styles.button}><Text style={styles.txt}>App Info</Text></TouchableOpacity>
+          <TouchableOpacity onPress={()=>{Linking.openSettings()}} style={styles.button}><Text style={styles.txt}>App Info</Text><Icon color={'black'} size={20} name="yin-yang"/></TouchableOpacity>
   
 
          
@@ -29,9 +28,9 @@ const SettingsPage=()=>{
             <View style={styles.fake_card}>  
             <Text style={[styles.txt,{color:'black',marginBottom:5}]}>Contact Me!</Text>
             <View style={{flexDirection:'row'}}>
-            <TouchableOpacity style={[styles.buttonz,{backgroundColor:'#003d99'}]}onPress={()=>{Linking.openURL("https://github.com/Saboten758")}}><Text style={[styles.txt2]}>Github</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.buttonz}onPress={()=>{Linking.openURL("mailto:debjitdaw03@gmail.com")}}><Text style={styles.txt2}>Gmail</Text></TouchableOpacity>
-            <TouchableOpacity style={[styles.buttonz,{backgroundColor:'#ff0000'}]}onPress={()=>{Linking.openURL("https://saboten123.itch.io")}}><Text style={[styles.txt2,{color:'black'}]}>itch.io</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.buttonz,{backgroundColor:'#003d99'}]}onPress={()=>{Linking.openURL("https://github.com/Saboten758")}}><Icon size={20} color={'white'} name="github"style={[styles.txt2]}/></TouchableOpacity>
+            <TouchableOpacity style={styles.buttonz}onPress={()=>{Linking.openURL("mailto:debjitdaw03@gmail.com")}}><Icon size={20} name="google"style={[styles.txt2]} color={'white'}/></TouchableOpacity>
+            <TouchableOpacity style={[styles.buttonz,{backgroundColor:'#ff0000'}]}onPress={()=>{Linking.openURL("https://saboten123.itch.io")}}><Icon size={20} color={'white'} name="itch-io"style={[styles.txt2]}/></TouchableOpacity>
             </View>
             </View>
             <Text style={{color:'white'}}>Lemon Player Version 1.2</Text>
@@ -71,7 +70,7 @@ const styles=StyleSheet.create({
   },
   txt2:{
       color:'white',
-      fontWeight:'bold'
+      
   },
   fake_card:{
       elevation:3,
@@ -86,6 +85,8 @@ const styles=StyleSheet.create({
   },
   buttonz:{
       backgroundColor:'#9999ff',
+      alignItems:'center',
+      justifyContent:'center',
       borderRadius:10,
       padding:7,
       opacity:1,

@@ -179,6 +179,7 @@ import axios from 'axios';
   }
 
 const Music=()=>{
+
   const window=useWindowDimensions()
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const [back,setBack]=useState("")
@@ -235,7 +236,7 @@ const Music=()=>{
       <Card>
       <Card.Cover
               source={back?{uri:back}:require('../assets/mood.gif')}
-              style={[styles.city,{width:width-40,height:window.height-670}]}
+              style={[styles.city,{width:width-40,height:window.height-600}]}
             />
       </Card>
       <Playlist/>

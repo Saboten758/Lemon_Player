@@ -3,6 +3,7 @@ import { StyleSheet,Text, View, useWindowDimensions, ImageBackground } from 'rea
 import { ActivityIndicator } from 'react-native-paper';
 import { WebView } from 'react-native-webview';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import SystemNavigationBar from 'react-native-system-navigation-bar';
 const Web = ({route}) => {
     const { data } = route.params;
     const window=useWindowDimensions()
@@ -14,6 +15,9 @@ const links=['https://web.simple-mmo.com','https://herta.eu.org','https://mangad
 'https://manganato.com','https://toonily.com','https://playtictactoe.org/','https://alokpaul-movies-app.netlify.app/',
 'https://anix.to/home','https://anilist.co/']
   
+
+  SystemNavigationBar.immersive()
+
 const webviewRef = useRef(null);
 
   const handleBackNavigation = () => {
