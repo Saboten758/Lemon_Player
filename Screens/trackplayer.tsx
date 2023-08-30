@@ -69,6 +69,7 @@ import TrackPlayer, {
   }
   const addedSongIds = [];
   export async function addTracks() {
+    
     await TrackPlayer.add([
       {
         id:'1',

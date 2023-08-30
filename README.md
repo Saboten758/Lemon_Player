@@ -37,14 +37,14 @@ A chill app where you play music from Live Radio Stations, get vaporwaved by the
 This will start the Metro bundler and launch the project on an emulator or connected device.
 
 ## Screenshots
-<div style="text-align:center"><img src="https://i.imgur.com/Cg35TkR.jpeg" width="320" height="700" style="display: block; margin: 0 auto" ><br/>
+<div style="text-align:center"><img src="https://i.imgur.com/00mpQpY.jpeg" width="320" height="700" style="display: block; margin: 0 auto" ><br/>
 Radio<br/>
 <div style="text-align:center"><img src="https://i.imgur.com/xmrcmpL.jpeg" width="320" height="700" style="display: block; margin: 0 auto" ><br/>
 Explore Page<br/>
 <img src="https://i.imgur.com/vKg1Fao.jpeg" width="320" height="700" style="display: block; margin: 0 auto" ><br/>
 Different RSS feeds<br/>
-<img src="https://i.imgur.com/WQ6r7Nt.jpeg" width="320" height="700" style="display: block; margin: 0 auto" ><br/>
-Plaza Radio & J1 Radio ♫<br/>
+<img src="https://i.imgur.com/I9jzpHz.jpg" width="320" height="700" style="display: block; margin: 0 auto" ><br/>
+Radio & Local Music ♫<br/>
 <img src="https://i.imgur.com/xMVEbG4.jpeg" width="320" height="700" style="display: block; margin: 0 auto" ><br/>
 Manga Page<br/>
 <img src="https://i.imgur.com/v2kvu5O.jpeg" width="320" height="700" style="display: block; margin: 0 auto" ><br/>

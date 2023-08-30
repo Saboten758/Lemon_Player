@@ -16,6 +16,8 @@ import Games from "../Screens/Games";
 import Manga from "../Screens/Manga";
 import Web2 from "../Others/Web2";
 import Shows from "../Screens/Shows";
+import Music2 from "../Screens/Music2";
+import Listz from "../Screens/List";
 
 const Stack=createNativeStackNavigator();
 
@@ -47,7 +49,13 @@ const Root=()=>{
             headerShown:false
             
         }}/>
+    
         
+        <Stack.Screen  name="Music2" component={Music2}  options={{
+            headerShown:false
+            
+        }}/>
+
         <Stack.Screen  name="Gran" component={Gran}  options={{
             headerShown:false
             

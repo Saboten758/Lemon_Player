@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {ImageBackground,SafeAreaView,StyleSheet,Text,View,FlatList,ActivityIndicator,TouchableOpacity, Dimensions, useWindowDimensions} from 'react-native';
+import {ImageBackground,SafeAreaView,StyleSheet,Text,View,FlatList,ActivityIndicator,TouchableOpacity, Dimensions, useWindowDimensions, ToastAndroid} from 'react-native';
 import TrackPlayer, {
     useTrackPlayerEvents,
     usePlaybackState,
@@ -7,7 +7,7 @@ import TrackPlayer, {
     Event,
     State
   } from 'react-native-track-player';
-  import Icon from 'react-native-vector-icons/FontAwesome';
+  import Icon from 'react-native-vector-icons/Ionicons';
   import { setupPlayer, addTracks,Night } from './trackplayer';
 import { Card } from 'react-native-paper';
 import axios from 'axios';
@@ -114,8 +114,9 @@ import axios from 'axios';
         await TrackPlayer.reset();
         queue.sort(() => Math.random() - 0.5);
         await TrackPlayer.add(queue);
-      
+        
         loadPlaylist()
+        ToastAndroid.show("Rolled a Dice!",ToastAndroid.SHORT)
       }
       const window=useWindowDimensions()
     return(
@@ -155,22 +156,25 @@ import axios from 'axios';
       <View style={{flexDirection: 'row',
         flexWrap: 'wrap', alignItems: 'center'}}>
           <Icon.Button
-            name="arrow-left"
+            name="play-skip-back"
             size={28}
             backgroundColor="transparent"
+            color={'#eeccff'}
             onPress={() => TrackPlayer.skipToPrevious()}/>
           <Icon.Button
             name={playerState == State.Playing ? 'pause' : 'play'}
             size={40}
             backgroundColor="transparent"
+            
             onPress={handlePlayPress}/>
           <Icon.Button
-            name="arrow-right"
+            name="play-skip-forward"
             size={28}
+            color={'#eeccff'}
             backgroundColor="transparent"
             onPress={() => TrackPlayer.skipToNext()}/>
           <Icon.Button
-            name="random"
+            name="dice"
             size={28}
             backgroundColor="transparent"
             onPress={onShuffle}/>
@@ -179,7 +183,7 @@ import axios from 'axios';
   }
 
 const Music=()=>{
-
+  
   const window=useWindowDimensions()
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const [back,setBack]=useState("")
@@ -208,8 +212,8 @@ const Music=()=>{
     async function setup() {
       let isSetup = await setupPlayer();
 
-      const queue = await TrackPlayer.getQueue();
-      if(isSetup && queue.length <= 0) {
+      const queue = await TrackPlayer.getQueue();  
+      if(isSetup && queue.length <= 0) {   //safety net ;p
         await addTracks();
       }
 
@@ -229,9 +233,9 @@ const Music=()=>{
   
   
   return (
-
-    <ImageBackground source={pick?require('../assets/mood.gif'):require('../assets/smoke.gif')}
-    style={styles.container}>
+   
+    <ImageBackground style={styles.container}source={pick?require('../assets/mood.gif'):require('../assets/smoke.gif')}
+   >
       
       <Card>
       <Card.Cover
@@ -249,11 +253,11 @@ const Music=()=>{
 
 const styles = StyleSheet.create({
   container: {
-    position:'relative',
+    
     flex: 1,
     justifyContent: 'center',
     alignItems:"center",
-    padding: 10,
+    padding:10,
     backgroundColor: '#a8c0c8',
     
     

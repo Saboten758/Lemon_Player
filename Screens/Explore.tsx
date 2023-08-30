@@ -153,13 +153,14 @@ const Explore=()=>{
             </View>
         </View>
         <View style={{alignItems:'center',flex:1,backgroundColor:'#ffffe6'}}>
-        <FlatList
+        {x.length!=0&&(<FlatList
         data={x}
         ListHeaderComponent={hed}
         ItemSeparatorComponent={sep}
         renderItem={({item}) => <Item title={item} />}
        
-      />
+      />)}
+      {x.length==0&&(<Text style={styles.txt3}>SOURCE CANT BE FETCHED </Text>)}
         </View>
         </>
         
