@@ -1,24 +1,30 @@
 import React from "react";
 import { View,StyleSheet,Text, ScrollView,TouchableOpacity, Linking,Dimensions } from "react-native";
 import { Card } from "react-native-paper";
-import Icon from 'react-native-vector-icons/FontAwesome5Pro';
+import Icon from 'react-native-vector-icons/FontAwesome6';
 
 const SettingsPage=()=>{
   
     return(
       <ScrollView style={{flexGrow:1,backgroundColor:'#131313'}}>
         <View style={styles.containerz}>
+         
             <Text style={styles.head}>Lemon</Text>
+            
+       
+            
             <Text style={[styles.head,{marginTop:0}]}>Player</Text>
+            
            <Card style={{justifyContent:'flex-start',marginTop:20}}>
       <Card.Cover
               source={require('../assets/lemon.gif')}
               style={[styles.city,{width:Dimensions.get("screen").width-40}]}
             />
       </Card>
-        
-          <TouchableOpacity onPress={()=>{Linking.openSettings()}} style={styles.button}><Text style={styles.txt}>App Info</Text><Icon color={'black'} size={20} name="yin-yang"/></TouchableOpacity>
-  
+        <View style={{flexDirection:"row"}}>
+          <TouchableOpacity onPress={()=>{Linking.openSettings()}} style={styles.button}><Text style={styles.txt}>App Info</Text><Icon color={'black'} size={20} name="circle-info" style={{marginTop:3}}/></TouchableOpacity>
+          <TouchableOpacity onPress={()=>{Linking.openURL("https://github.com/Saboten758/Lemon_Player")}} style={[styles.button,{backgroundColor:"#428df5"}]}><Text style={[styles.txt,{color:"white"}]}>Github Page</Text><Icon color={'white'} size={20} name="circle-info" style={{marginTop:3}}/></TouchableOpacity>
+          </View>
 
          
 
@@ -29,11 +35,11 @@ const SettingsPage=()=>{
             <Text style={[styles.txt,{color:'black',marginBottom:5}]}>Contact Me!</Text>
             <View style={{flexDirection:'row'}}>
             <TouchableOpacity style={[styles.buttonz,{backgroundColor:'#003d99'}]}onPress={()=>{Linking.openURL("https://github.com/Saboten758")}}><Icon size={20} color={'white'} name="github"style={[styles.txt2]}/></TouchableOpacity>
-            <TouchableOpacity style={styles.buttonz}onPress={()=>{Linking.openURL("mailto:debjitdaw03@gmail.com")}}><Icon size={20} name="google"style={[styles.txt2]} color={'white'}/></TouchableOpacity>
+            <TouchableOpacity style={styles.buttonz}onPress={()=>{Linking.openURL("mailto:debjitdaw03@gmail.com")}}><Icon size={20} name="envelope"style={[styles.txt2]} color={'white'}/></TouchableOpacity>
             <TouchableOpacity style={[styles.buttonz,{backgroundColor:'#ff0000'}]}onPress={()=>{Linking.openURL("https://saboten123.itch.io")}}><Icon size={20} color={'white'} name="itch-io"style={[styles.txt2]}/></TouchableOpacity>
             </View>
             </View>
-            <Text style={{color:'white'}}>Lemon Player Version 1.3</Text>
+            <Text style={{color:'white'}}>Lemon Player Version 1.4</Text>
           
             
         </View>

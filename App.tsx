@@ -19,14 +19,14 @@ const App=()=>{
 
         if (latestRelease.tag_name !== currentVersion) {
     
-          Alert.alert("Your app is not up to date!","Please update to the latest version on Github",[{text:'Open Github',onPress: ()=>Linking.openURL("https:github.com/Saboten758/Lemon_Player/releases/latest")},{text:'Cancel'}]);
+          Alert.alert("Your app is not up to date!",`Please update to the latest version from Github!\nCurrent Version: ${currentVersion}\nLatest Stable Version: ${latestRelease.tag_name}`,[{text:'Open Github',onPress: ()=>Linking.openURL("https:github.com/Saboten758/Lemon_Player/releases/latest")},{text:'Cancel'}]);
         }
         else{
           ToastAndroid.showWithGravity("Your App is upto date!",1000,9)
         }
       })
       .catch(error => {
-        Alert.alert("Error","New Version cann't be fetched from GitHub! Check Your Internet Connection!");
+        Alert.alert("Error","New Version can't be fetched from GitHub! Check Your Internet Connection!");
       });
     };
 
