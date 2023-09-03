@@ -74,8 +74,11 @@ const Explore=()=>{
     else if(currentdate.getHours()>=17 && currentdate.getHours()<20){
         key=3
     }
-    else if(currentdate.getHours()>=20 && currentdate.getHours()<=24){
+    else if(currentdate.getHours()>=20 && currentdate.getHours()<=23){
         key=4
+    }
+    else if(currentdate.getHours()==0){
+      key=4
     }
     const hed=()=>(<View style={{backgroundColor:'#3D3C49',padding:10}}><Text style={styles.title}>{head}</Text></View>)
     const sep=()=>(<View style={{borderWidth:1,borderColor:'black'}}/>)

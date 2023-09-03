@@ -9,34 +9,88 @@ import DocumentPicker from 'react-native-document-picker'
 
 const Home=()=>{
   
-
+  
   const open = async () => {
     try {
       
       
       const result = await DocumentPicker.pick({
-        transitionStyle:'partialCurl',
+        transitionStyle:'flipHorizontal',
+        presentationStyle:'overFullScreen',
         type: [DocumentPicker.types.audio],
-      
+        allowMultiSelection: true
       });
+      const queue = await TrackPlayer.getQueue();
+
+      // Extract the IDs from the tracks
+      const songIds = queue.map(track => track.id);
+
+      if (result.length==1){
+        const current=result[0]     
+        var f=0
+        for (var i=0;i<songIds.length;i++){
+          if (songIds[i]==current.name){
+              f=1
+              break
+          }
+        }
+        if (f!=1){
+          await TrackPlayer.add([
+            {
+              id:String(current.name),
+              url: current.uri,
+              artist:"Added From Local Storage",
+              title:String(current.name),
+              artwork:require('../assets/default.jpg'),
+              duration:0
+            
+            },       
+            
+            ]);
+            await TrackPlayer.setRepeatMode(RepeatMode.Queue);
+
+          ToastAndroid.show(`${result[0]['name']} was added to playlist!`,ToastAndroid.SHORT)
+        }
+        else{
+          ToastAndroid.show(`${result[0]['name']} was already present in the playlist!`,ToastAndroid.SHORT)
+        }
+       
+          
+      }
+      else{
+          
+          for(var i=0;i<result.length;i++){
+            var f=0
+            for (var i=0;i<songIds.length;i++){
+              if (songIds[i]==result[i].name){
+                  f=1
+                  break
+              }
+            }
+            if (f==0){
+              await TrackPlayer.add([
+                {
+                  id:String(result[i]['name']),
+                  url: result[i]['uri'],
+                  artist:"Added From Local Storage",
+                  title:String(result[i]['name']),
+                  artwork:require('../assets/default.jpg'),
+                  duration:0,
+                
+                },       
+                
+                ]);
+                await TrackPlayer.setRepeatMode(RepeatMode.Queue);
+                
+            }
+            }
+            ToastAndroid.show(`${result.length} songs were added to playlist!`,ToastAndroid.SHORT)
+            
+
+      }
       
-      const x=result[0]['uri']
      
-      await TrackPlayer.add([
-        {
-          id:String(result[0]['name']),
-          url: x,
-          artist:"Added From Local Storage",
-          title:String(result[0]['name']),
-          artwork:require('../assets/default.jpg'),
-          duration:0,
-        
-        },       
-        
-        ]);
-        await TrackPlayer.setRepeatMode(RepeatMode.Queue);
-        
-        ToastAndroid.show(`${result[0]['name']} was added to playlist!`,ToastAndroid.SHORT)
+      
     } catch (error) {
       if (DocumentPicker.isCancel(error)) {
         console.log('User cancelled the document picker.');
