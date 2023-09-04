@@ -26,66 +26,65 @@ const Home=()=>{
       const songIds = queue.map(track => track.id);
 
       if (result.length==1){
-        const current=result[0]     
-        var f=0
-        for (var i=0;i<songIds.length;i++){
-          if (songIds[i]==current.name){
-              f=1
-              break
-          }
-        }
-        if (f!=1){
-          await TrackPlayer.add([
-            {
-              id:String(current.name),
-              url: current.uri,
-              artist:"Added From Local Storage",
-              title:String(current.name),
-              artwork:require('../assets/default.jpg'),
-              duration:0
-            
-            },       
-            
-            ]);
-            await TrackPlayer.setRepeatMode(RepeatMode.Queue);
-
-          ToastAndroid.show(`${result[0]['name']} was added to playlist!`,ToastAndroid.SHORT)
-        }
-        else{
-          ToastAndroid.show(`${result[0]['name']} was already present in the playlist!`,ToastAndroid.SHORT)
-        }
-       
-          
-      }
-      else{
-          
-          for(var i=0;i<result.length;i++){
+            const current=result[0]     
             var f=0
             for (var i=0;i<songIds.length;i++){
-              if (songIds[i]==result[i].name){
+              if (songIds[i]==current.name){
                   f=1
                   break
               }
             }
-            if (f==0){
+            if (f!=1){
               await TrackPlayer.add([
                 {
-                  id:String(result[i]['name']),
-                  url: result[i]['uri'],
+                  id:String(current.name),
+                  url: current.uri,
                   artist:"Added From Local Storage",
-                  title:String(result[i]['name']),
+                  title:String(current.name),
                   artwork:require('../assets/default.jpg'),
-                  duration:0,
+                  duration:0
                 
                 },       
                 
                 ]);
                 await TrackPlayer.setRepeatMode(RepeatMode.Queue);
-                
+
+              ToastAndroid.show(`${result[0]['name']} was added to playlist!`,ToastAndroid.SHORT)
             }
+            else{
+              ToastAndroid.show(`${result[0]['name']} was already present in the playlist!`,ToastAndroid.SHORT)
             }
-            ToastAndroid.show(`${result.length} songs were added to playlist!`,ToastAndroid.SHORT)
-            
+       
+          
+      }
+      else{
+            for(var i=0;i<result.length;i++){
+              const current=result[i]     
+              var f=0
+              for (var j=0;j<songIds.length;j++){
+                if (songIds[j]==current.name){
+                    f=1
+                    break
+                }
+              }
+              if (f!=1){
+                await TrackPlayer.add([
+                  {
+                    id:String(current.name),
+                    url: current.uri,
+                    artist:"Added From Local Storage",
+                    title:String(current.name),
+                    artwork:require('../assets/default.jpg'),
+                    duration:0
+                  
+                  },       
+                  
+                  ]);
+                  await TrackPlayer.setRepeatMode(RepeatMode.Queue);
+              }
+            }
+            ToastAndroid.show(`${result.length} songs were added to playlist!`,ToastAndroid.SHORT)   
+            ToastAndroid.show(`Similar Items were skipped!`,ToastAndroid.SHORT)   
 
       }
       
