@@ -74,7 +74,7 @@ import TrackPlayer, {
       {
         id:'1',
         url: "https://radio.plaza.one/mp3",
-        artist:"Nightwave Plaza: A tranquil oasis of lo-fi hip hop and chill beats.",
+        artist:"V a p o r ~ w a v e",
         title:'Night Wave Plaza Radio',
         artwork:require('../assets/plaza.png'),
         duration:0,
@@ -107,7 +107,17 @@ import TrackPlayer, {
         duration:0,
         isLiveStream:true,
       },
-  
+      {
+        id:'5',
+        url: "https://stream.radioparadise.com/",
+        artwork:require('../assets/rp.png'),
+        artist:"High quality audio streams and curated playlists.",
+        title:'Radio Paradise',
+        duration:0,
+        isLiveStream:true,
+      },
+      
+      
       
       ]);
       await TrackPlayer.setRepeatMode(RepeatMode.Queue);
