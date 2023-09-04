@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import DocumentPicker from 'react-native-document-picker'
 
 const Home=()=>{
-  
+    
   
   const open = async () => {
 

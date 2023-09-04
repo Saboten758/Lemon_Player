@@ -11,6 +11,7 @@ import TrackPlayer, {
   import { setupPlayer, addTracks,Night } from './trackplayer';
 import { Card } from 'react-native-paper';
 import axios from 'axios';
+import Slider from '@react-native-community/slider';
  
   function TrackProgress() {
     const { position, duration } = useProgress(200);
@@ -20,9 +21,21 @@ import axios from 'axios';
       let secs = (Math.trunc(seconds) % 60).toString().padStart(2, '0');
       return `${mins}:${secs}`;
     }
-  
+    const handleSliderChange = (value) => {
+      TrackPlayer.seekTo(value);
+    };
     return(
       <View>
+        <Slider
+            style={styles.prog}
+            value={position}
+            minimumValue={0}
+            maximumValue={ duration }
+            thumbTintColor="pink"
+            minimumTrackTintColor="#FFFFFF"
+            maximumTrackTintColor="#000000"
+            onValueChange={handleSliderChange}
+            />
         <Text style={styles.trackProgress}>
           { format(position) } / { format(duration) }
         </Text>
@@ -246,7 +259,7 @@ const Music=()=>{
       <Playlist/>
       <TouchableOpacity style={[styles.button]} onPress={Night}><Text style={styles.txt}>Nightwave Plaza Song Preview</Text></TouchableOpacity>
       <TrackProgress/>
-      <Header/>
+      {/* <Header/> */}
     </ImageBackground>
   );
 }
@@ -310,6 +323,11 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
   },
+  prog:{
+    marginTop: 40,
+    width:350,
+    flexDirection:"row"
+},
   media: {
     flex: 1,
     position:'relative',
@@ -338,7 +356,8 @@ const styles = StyleSheet.create({
     color:'white'
   },
   trackProgress: {
-    marginTop: 40,
+    marginTop: 10,
+    justifyContent:'space-evenly',
     textAlign: 'center',
     fontSize: 24,
     color: '#c1c1d7'
