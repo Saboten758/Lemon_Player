@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ImageBackground,StyleSheet,Text, Dimensions, TouchableOpacity, ToastAndroid, useWindowDimensions, ScrollView } from "react-native";
 import { Card } from "react-native-paper";
 import SystemNavigationBar from "react-native-system-navigation-bar";
-import TrackPlayer, { RepeatMode } from "react-native-track-player";
+import TrackPlayer, { RepeatMode, State } from "react-native-track-player";
 import Icon from 'react-native-vector-icons/AntDesign';
 import DocumentPicker from 'react-native-document-picker'
 
@@ -11,8 +11,15 @@ const Home=()=>{
   
   
   const open = async () => {
+
     try {
-      
+            var x=false
+             if(await TrackPlayer.getState() == State.Playing) {
+                x=true;
+              }
+              else {
+                x=false;
+              }
       
       const result = await DocumentPicker.pick({
         transitionStyle:'flipHorizontal',
@@ -35,6 +42,7 @@ const Home=()=>{
               }
             }
             if (f!=1){
+            
               await TrackPlayer.add([
                 {
                   id:String(current.name),
@@ -47,17 +55,19 @@ const Home=()=>{
                 },       
                 
                 ]);
+                x?TrackPlayer.play():TrackPlayer.pause();  //continue playback
                 await TrackPlayer.setRepeatMode(RepeatMode.Queue);
-
+              
               ToastAndroid.show(`${result[0]['name']} was added to playlist!`,ToastAndroid.SHORT)
             }
             else{
               ToastAndroid.show(`${result[0]['name']} was already present in the playlist!`,ToastAndroid.SHORT)
             }
-       
+            
           
       }
       else{
+            
             for(var i=0;i<result.length;i++){
               const current=result[i]     
               var f=0
@@ -68,6 +78,7 @@ const Home=()=>{
                 }
               }
               if (f!=1){
+              
                 await TrackPlayer.add([
                   {
                     id:String(current.name),
@@ -80,9 +91,11 @@ const Home=()=>{
                   },       
                   
                   ]);
+                  x?TrackPlayer.play():TrackPlayer.pause() //contiue playback
                   await TrackPlayer.setRepeatMode(RepeatMode.Queue);
               }
             }
+            
             ToastAndroid.show(`${result.length} songs were added to playlist!`,ToastAndroid.SHORT)   
             ToastAndroid.show(`Similar Items were skipped!`,ToastAndroid.SHORT)   
 
