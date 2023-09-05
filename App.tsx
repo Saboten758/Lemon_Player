@@ -20,6 +20,7 @@ const App=()=>{
       if(queue.length <= 0) {
         await addTracks();
       }
+      await TrackPlayer.play()
       axios.get("https://api.github.com/repos/Saboten758/Lemon_Player/releases/latest")
       .then(response => {
         const latestRelease = response.data;
@@ -40,9 +41,11 @@ const App=()=>{
 
     init().finally(async () => {
       await BootSplash.hide({ fade: true });
+      setTimeout(()=>{},1000)
       ToastAndroid.show("Welcome to Lemon Player",ToastAndroid.SHORT)
     });
   }, []);
+  
   return<Root/>
 }
 export default App

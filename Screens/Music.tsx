@@ -34,7 +34,7 @@ import Slider from '@react-native-community/slider';
             thumbTintColor="pink"
             minimumTrackTintColor="#FFFFFF"
             maximumTrackTintColor="#000000"
-            onValueChange={handleSliderChange}
+            onSlidingComplete={handleSliderChange}
             />
         <Text style={styles.trackProgress}>
           { format(position) } / { format(duration) }
@@ -211,7 +211,6 @@ const Music=()=>{
     Dimensions.addEventListener('change',handle);
   },[])
 
-
   async function fetch_img(){
     const res=await axios.get("https://api.plaza.one/backgrounds/random")
     setBack(res.data.src)
@@ -252,6 +251,7 @@ const Music=()=>{
       
       <Card>
       <Card.Cover
+            
               source={back?{uri:back}:require('../assets/mood.gif')}
               style={[styles.city,{width:width-40,height:window.height-600}]}
             />

@@ -82,6 +82,24 @@ import TrackPlayer, {
       },
       {
         id:'2',
+        url: "https://fluxfm.streamabc.net/flx-chillhop-mp3-320-1595440?sABC=64s6n8r6%230%23358oqr054r4564qq0sn2322986oq7prn%23fgernzf.syhksz.qr&aw_0_1st.playerid=streams.fluxfm.de&amsparams=playerid:streams.fluxfm.de;skey:1693886694",
+        artwork:require('../assets/chillpop.jpg'),
+        artist:"Flux Radio",
+        title:'ChillHop Radio',
+        duration:0,
+        isLiveStream:true,
+      },
+      {
+        id:'3',
+        url: "https://fluxfm.streamabc.net/flx-jazzradio-mp3-320-9214342?sABC=64s6n914%230%23358oqr054r4564qq0sn2322986oq7prn%23nhqvb&aw_0_1st.playerid=audio&amsparams=playerid:audio;skey:1693886740",
+        artwork:require('../assets/jazz.png'),
+        artist:"Flux Radio",
+        title:'Jazz radio Schwarzensten',
+        duration:0,
+        isLiveStream:true,
+      },
+      {
+        id:'4',
         url: "https://jenny.torontocast.com:2000/stream/J1GOLD",
         artist:"Japan's greatest hits of the 60s, 70s and 80s.",
         title:'J1 Gold Radio',
@@ -90,7 +108,7 @@ import TrackPlayer, {
         isLiveStream:true,
       },
       {
-        id:'3',
+        id:'5',
         url: "https://jenny.torontocast.com:2000/stream/J1XTRA",
         artwork:require('../assets/j1xtra.png'),
         artist:"Playing the hits from the Heisei era (1989~2019)",
@@ -99,7 +117,7 @@ import TrackPlayer, {
         isLiveStream:true,
       },
       {
-        id:'4',
+        id:'6',
         url: "https://jenny.torontocast.com:2000/stream/J1HITS",
         artwork:require('../assets/j1hits.png'),
         artist:"Japan's Hottest Hits. Playing today's hits heard on Japanese FM radio.",
@@ -107,15 +125,7 @@ import TrackPlayer, {
         duration:0,
         isLiveStream:true,
       },
-      {
-        id:'5',
-        url: "https://stream.radioparadise.com/",
-        artwork:require('../assets/rp.png'),
-        artist:"High quality audio streams and curated playlists.",
-        title:'Radio Paradise',
-        duration:0,
-        isLiveStream:true,
-      },
+      
       
       
       

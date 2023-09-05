@@ -1,15 +1,26 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { ImageBackground,StyleSheet,Text, Dimensions, TouchableOpacity, ToastAndroid, useWindowDimensions, ScrollView } from "react-native";
+import { ImageBackground,StyleSheet,Text, Dimensions, TouchableOpacity, ToastAndroid, useWindowDimensions, ScrollView, View } from "react-native";
 import { Card } from "react-native-paper";
 import SystemNavigationBar from "react-native-system-navigation-bar";
-import TrackPlayer, { RepeatMode, State } from "react-native-track-player";
+import TrackPlayer, { RepeatMode, State, useTrackPlayerEvents,Event, usePlaybackState } from "react-native-track-player";
 import Icon from 'react-native-vector-icons/AntDesign';
 import DocumentPicker from 'react-native-document-picker'
-
+const quotes=['ｈｅｌｌｏ░ｔｈｅｒｅ　（可握ヾ','ｗｏａｈ　（音為ヤ）','丹冊ヨ尺工亡丹','🅲🅷🅸🅻🅻','【j】【u】【n】【g】【l】【e】','ｃｏｏｌ　ぬ佳ヒ','尸し丹とヨ尺','ｍｅｌｏｎ　りタォ','ｓｐａｃｅ　ワな億','【﻿ｒａｄａｒ】','ｌｏｖｅ　ロ気ノ','ｂａｓｓ　ス芋ゖ','丂丨Ꮆ几卂ㄥ','(-_-) Ĺเⓕᗴ (-_-)','ｐｈｏｎｅ　陰ぃヂ','ｌｅｍｏｎ　域とス','₮ɆⱠɆ₲Ɽ₳₱Ⱨ']
+const x=Number((Math.random()*(quotes.length-1)).toFixed(0))
 const Home=()=>{
+    async function handlePlayPress() {
+      if(await TrackPlayer.getState() == State.Playing) {
+        ToastAndroid.show("Playback Paused!",ToastAndroid.SHORT)
+        TrackPlayer.pause();
+      }
+      else {
+        TrackPlayer.play();
+      }
+    }
+    const playerState = usePlaybackState();
     
-  
+
   const open = async () => {
 
     try {
@@ -112,12 +123,22 @@ const Home=()=>{
     }
   };
   useEffect( ()=>{SystemNavigationBar.navigationShow()},[])
- 
   const nav=useNavigation()
     return(
       <ScrollView contentContainerStyle={{flexGrow: 1}} >
+        <View style={styles.header}>
+          <Text style={{fontSize:15}}>{quotes[x]}</Text>
+          <Icon.Button
+            name={playerState == State.Playing ? 'pause' : 'play'}
+            size={40}
+            color={'#AD8C9C'}
+            backgroundColor="transparent"
+            style={{margin:10}}
+            onPress={handlePlayPress}/>
+          </View>
         <ImageBackground source={require('../assets/city_dark.gif')}style={styles.container}>
-          <Text style={styles.head}>Music & Radio</Text>
+          
+          <Text style={[styles.head,{marginBottom:20}]}>Music & Radio</Text>
           <Card>
       <Card.Cover
               source={require('../assets/zoom.gif')}
@@ -126,6 +147,7 @@ const Home=()=>{
       </Card>
           <TouchableOpacity style={[styles.button,{marginTop:30}]}onPress={()=>{nav.navigate('Music')}}><Text style={styles.txt}>Music Player </Text><Icon name="play" color={'#cccccc'} size={25}style={{marginStart:5}}/></TouchableOpacity>
           <TouchableOpacity style={styles.button}onPress={open}><Text style={styles.txt}>Add Songs From Local Storage </Text><Icon name="select1" color={'#cccccc'} size={25}style={{marginStart:5}}/></TouchableOpacity>
+          
         </ImageBackground>
         </ScrollView>
     )
@@ -134,11 +156,19 @@ const Home=()=>{
 export default Home;
 
 const styles=StyleSheet.create({
+  header:{
+    backgroundColor:'#3D3C49',
+    alignItems:'center',
+    justifyContent:'center',
+    flex:0.2,
+    flexDirection:'row'
+  },
     container:{
       flex:1,
       justifyContent:'center',
       alignItems:'center',
       backgroundColor:'#668285',
+      padding:25,
     },
     head:{
       color:'black',
