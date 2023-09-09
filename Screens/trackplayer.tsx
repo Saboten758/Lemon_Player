@@ -136,7 +136,7 @@ import TrackPlayer, {
       },
       {
         id:'8',
-        url: "https://stream-153.zeno.fm/kfpemsm21oluv?zs=54GidxYbT3Su8gflaRJXZg",
+        url: "https://stream-153.zeno.fm/kfpemsm21oluv",
         artwork:require('../assets/chicano.webp'),
         artist:"Rap Radio.",
         title:'Chicano Rap',
@@ -145,7 +145,7 @@ import TrackPlayer, {
       },
       {
         id:'9',
-        url: "https://stream-150.zeno.fm/1d4qva0n3p8uv?zs=qH1BEAEjTVirt34HWNsQfA",
+        url: "https://stream-150.zeno.fm/1d4qva0n3p8uv",
         artwork:require('../assets/okufm.webp'),
         artist:"Japanese Music.",
         title:'Oku FM',
@@ -154,8 +154,8 @@ import TrackPlayer, {
       },
       {
         id:'10',
-        url: "https://stream-164.zeno.fm/tzt3zoqyiiutv?zs=feTl5QpzT5-g33367PeRpA",
-        artwork:"https://zeno.fm/_next/image/?url=https%3A%2F%2Fimages.zeno.fm%2FoLURlhY7oj3dQ9ojdR0Pj0GWKjT1ni-uJfFYexkZGaw%2Frs%3Afit%3A240%3A240%2Fg%3Ace%3A0%3A0%2FaHR0cHM6Ly9zdHJlYW0tdG9vbHMuemVub21lZGlhLmNvbS9jb250ZW50L3N0YXRpb25zL2QzODE2YzZjLTM5ODQtNDcxNy05MzFjLTMwNGU0ZTRlMmY2Mi9pbWFnZS8_dXBkYXRlZD0xNjkwOTMzNjQ0MDAw.webp&w=1920&q=100",
+        url: "https://stream-164.zeno.fm/tzt3zoqyiiutv",
+        artwork:require('../assets/KISSFM.webp'),
         artist:"Chill BGM & Songs.",
         title:'Radio Kiss',
         duration:0,
@@ -163,8 +163,8 @@ import TrackPlayer, {
       },
       {
         id:'11',
-        url: "https://stream-151.zeno.fm/feucy4tblujvv?zs=sWRIn89hSvq7JTUxrEvarQ",
-        artwork:"https://zeno.fm/_next/image/?url=https%3A%2F%2Fimages.zeno.fm%2FtbHu6TxTiWihzPMllqlJLYG76uc7q5f1CWUoF0YfoXU%2Frs%3Afit%3A240%3A240%2Fg%3Ace%3A0%3A0%2FaHR0cHM6Ly9zdHJlYW0tdG9vbHMuemVub21lZGlhLmNvbS9jb250ZW50L3N0YXRpb25zL2Q3YzYxNmIwLWU4NGMtNGM5Ni1iYmRlLWIzODc4ZTE3NGZmNy9pbWFnZS8_dXBkYXRlZD0xNjkzMzg4OTE3MDAw.webp&w=1920&q=100",
+        url: "https://stream-151.zeno.fm/feucy4tblujvv",
+        artwork:require('../assets/ZOE.webp'),
         artist:"BOOM",
         title:'__ZOE__',
         duration:0,
