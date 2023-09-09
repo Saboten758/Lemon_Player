@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import {ImageBackground,SafeAreaView,StyleSheet,Text,View,FlatList,ActivityIndicator,TouchableOpacity, Dimensions, useWindowDimensions, ToastAndroid} from 'react-native';
+import {ImageBackground,SafeAreaView,StyleSheet,Text,View,FlatList,ActivityIndicator,TouchableOpacity, Dimensions, useWindowDimensions, ToastAndroid, ScrollView} from 'react-native';
 import TrackPlayer, {
     useTrackPlayerEvents,
     usePlaybackState,
     useProgress,
     Event,
-    State
+    State,
+    RepeatMode
   } from 'react-native-track-player';
+  import DocumentPicker from 'react-native-document-picker'
   import Icon from 'react-native-vector-icons/Ionicons';
   import { setupPlayer, addTracks,Night } from './trackplayer';
 import { Card } from 'react-native-paper';
 import axios from 'axios';
+const {width,height}=Dimensions.get('window')
 import Slider from '@react-native-community/slider';
+import { useNavigation } from '@react-navigation/native';
+
  
   function TrackProgress() {
     const { position, duration } = useProgress(200);
@@ -75,6 +80,7 @@ import Slider from '@react-native-community/slider';
             <Text style={styles.songTitle}>{info.title}</Text>
             <Text style={styles.artistName}>{info.artist}</Text>
           </View>
+          
       </View>
       </View>
     );}
@@ -102,26 +108,7 @@ import Slider from '@react-native-community/slider';
         TrackPlayer.getCurrentTrack().then((index) => setCurrentTrack(index));
       }
     });
-    const sep=()=>(
-      <View style={{borderWidth:1,borderColor:'white',width:'auto'}}/>
-    )
 
-    function PlaylistItem({index, title, isCurrent}) {
-  
-      function handleItemPress() {
-        TrackPlayer.skip(index);
-      }
-  
-      return (
-        <TouchableOpacity onPress={handleItemPress}>
-          <Text
-            style={{...styles.playlistItem,
-              ...{backgroundColor: isCurrent ? '#8000ff' : 'transparent'}}}>
-          {title}
-          </Text>
-        </TouchableOpacity>
-      );
-    }
     async function handleShuffle() {
         let queue = await TrackPlayer.getQueue();
         await TrackPlayer.reset();
@@ -131,20 +118,8 @@ import Slider from '@react-native-community/slider';
         loadPlaylist()
         ToastAndroid.show("Rolled a Dice!",ToastAndroid.SHORT)
       }
-      const window=useWindowDimensions()
     return(
       <View>
-        <View style={[styles.playlist,{width:width-40,height:window.height-700}]}>
-          <FlatList
-            ItemSeparatorComponent={sep}
-            data={queue}
-            renderItem={({item, index}) => <PlaylistItem
-                                              index={index}
-                                              title={item.title}
-                                              isCurrent={currentTrack == index }/>
-            }
-          />
-        </View>
         <View style={{alignItems:'center',justifyContent:'center',}}>
         <Controls onShuffle={handleShuffle}/>
         </View>
@@ -202,7 +177,116 @@ const Music=()=>{
   const [back,setBack]=useState("")
   const [pick,setPick]=useState(0)
   const [width,setWidth]=useState(Dimensions.get('window').width)
+  const [rep,setRep]=useState(false)
 
+  const open = async () => {
+
+    try {
+            var x=false
+             if(await TrackPlayer.getState() == State.Playing) {
+                x=true;
+              }
+              else {
+                x=false;
+              }
+      
+      const result = await DocumentPicker.pick({
+        transitionStyle:'flipHorizontal',
+        presentationStyle:'overFullScreen',
+        type: [DocumentPicker.types.audio],
+        allowMultiSelection: true
+      });
+      const queue = await TrackPlayer.getQueue();
+
+      // Extract the IDs from the tracks
+      const songIds = queue.map(track => track.id);
+
+      if (result.length==1){
+            const current=result[0]     
+            var f=0
+            for (var i=0;i<songIds.length;i++){
+              if (songIds[i]==current.name){
+                  f=1
+                  break
+              }
+            }
+            if (f!=1){
+            
+              await TrackPlayer.add([
+                {
+                  id:String(current.name),
+                  url: current.uri,
+                  artist:"Added From Local Storage",
+                  title:String(current.name),
+                  artwork:require('../assets/default.jpg'),
+                  duration:0
+                
+                },       
+                
+                ]);
+                x?TrackPlayer.play():TrackPlayer.pause();  //continue playback
+                await TrackPlayer.setRepeatMode(RepeatMode.Queue);
+              
+              ToastAndroid.show(`${result[0]['name']} was added to playlist!`,ToastAndroid.SHORT)
+            }
+            else{
+              ToastAndroid.show(`${result[0]['name']} was already present in the playlist!`,ToastAndroid.SHORT)
+            }
+            
+          
+      }
+      else{
+            
+            for(var i=0;i<result.length;i++){
+              const current=result[i]     
+              var f=0
+              for (var j=0;j<songIds.length;j++){
+                if (songIds[j]==current.name){
+                    f=1
+                    break
+                }
+              }
+              if (f!=1){
+              
+                await TrackPlayer.add([
+                  {
+                    id:String(current.name),
+                    url: current.uri,
+                    artist:"Added From Local Storage",
+                    title:String(current.name),
+                    artwork:require('../assets/default.jpg'),
+                    duration:0
+                  
+                  },       
+                  
+                  ]);
+                  x?TrackPlayer.play():TrackPlayer.pause() //contiue playback
+                  await TrackPlayer.setRepeatMode(RepeatMode.Queue);
+              }
+            }
+            
+            ToastAndroid.show(`${result.length} songs were added to playlist!`,ToastAndroid.SHORT)   
+            ToastAndroid.show(`Similar Items were skipped!`,ToastAndroid.SHORT)   
+
+      }
+      
+     
+      
+    } catch (error) {
+      if (DocumentPicker.isCancel(error)) {
+        console.log('User cancelled the document picker.');
+      } else {
+        console.log('Error selecting document:', error);
+      }
+    }
+  };
+  async function handleRep(){
+    setRep(!rep);
+    rep?await TrackPlayer.setRepeatMode(RepeatMode.Track):await TrackPlayer.setRepeatMode(RepeatMode.Queue);
+    rep?ToastAndroid.show("Current Song is on Repeat!",ToastAndroid.SHORT):ToastAndroid.show("Repeat Queue!",ToastAndroid.SHORT)
+  }
+
+  const nav=useNavigation();
   useEffect(()=>{
     const handle=async()=>{
         const width=Dimensions.get('window').width;
@@ -243,24 +327,50 @@ const Music=()=>{
     );
   }
   
-  
   return (
-   
+    <>
+    <ScrollView contentContainerStyle={{flexGrow: 1}}>
     <ImageBackground style={styles.container}source={pick?require('../assets/mood.gif'):require('../assets/smoke.gif')}
    >
       
-      <Card>
+      <Card style={{marginBottom:10,}}>
       <Card.Cover
             
               source={back?{uri:back}:require('../assets/mood.gif')}
-              style={[styles.city,{width:width-40,height:window.height-600}]}
+              style={[styles.city,{width:width-40,height:window.height>600?window.height-520:window.height-100}]}
             />
       </Card>
+      
+      <Header/>
+      
+      
+      <TrackProgress/>
       <Playlist/>
       <TouchableOpacity style={[styles.button]} onPress={Night}><Text style={styles.txt}>Nightwave Plaza Song Preview</Text></TouchableOpacity>
-      <TrackProgress/>
-      {/* <Header/> */}
-    </ImageBackground>
+      </ImageBackground>
+     </ScrollView>
+      <View style={styles.bot}>
+            <View style={styles.icon}>
+                <TouchableOpacity style={{marginEnd:10,marginStart:10,alignItems:'center'}} onPress={()=>{nav.navigate("Playlists")}}>
+                <Icon color={"#E3F4F6"} name={"headset-sharp"} size={30}/>
+                <Text style={[styles.txt,{color:'#AD8C9C'}]}>PLAYLIST</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginEnd:10,marginStart:10,alignItems:'center'}} onPress={handleRep}>
+                <Icon color={'#E3F4F6'} name={rep?"repeat":"repeat-sharp"} size={30}/>
+                <Text style={styles.txt}>REPEAT</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginEnd:10,marginStart:10,alignItems:'center'}} onPress={open}>
+                <Icon color={'#E3F4F6'} name="download-outline" size={30}/>
+                <Text style={styles.txt}>ADD</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginEnd:10,marginStart:10,alignItems:'center'}}>
+                <Icon color={'#E3F4F6'} name="share-social" size={30}/>
+                <Text style={styles.txt}>SHARE</Text>
+                </TouchableOpacity>
+
+            </View>
+            </View>
+            </>
   );
 }
 
@@ -275,25 +385,7 @@ const styles = StyleSheet.create({
     
     
   },
-  playlist: {
-    padding:2,
-    marginTop: 40,
-    backgroundColor:'black',
-    marginBottom: 40,
-    borderRadius:20,
-    
-    height:170,
-    width:380,
-    position:'relative',
-    textShadowColor:'black',
-    borderWidth: 4,
-    borderColor: '#3D3C49', 
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 3,
-    elevation: 4,
-  },
+  
   button: {
     position:'relative',
     backgroundColor: '#33334d',
@@ -307,22 +399,16 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 4,
   },
-  playlistItem: {
-    position:'relative',
-    fontSize: 18,
-    color: 'white',
-    paddingTop: 4,
-    paddingBottom: 4,
-    paddingLeft: 8,
-    paddingRight: 8,
-    borderRadius: 20,
-    backgroundColor: 'white', 
-    marginVertical: 4, 
-    fontWeight: 'bold',
-    textShadowColor: '#AD8C9C', 
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
-  },
+  bot:{
+    backgroundColor:'black',
+    elevation:4,
+    paddingVertical:10,
+    width:width,
+    alignItems:"center",
+    borderTopWidth:2,
+    borderColor:'white',
+   
+},
   prog:{
     marginTop: 40,
     width:350,
@@ -389,6 +475,11 @@ const styles = StyleSheet.create({
     position: 'relative',
     overflow: 'hidden',
   },
+  icon:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    width:'80%'
+},
   crtOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',

@@ -122,6 +122,7 @@ const Home=()=>{
       }
     }
   };
+  
   useEffect( ()=>{SystemNavigationBar.navigationShow()},[])
   const nav=useNavigation()
     return(

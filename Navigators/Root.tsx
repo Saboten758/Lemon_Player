@@ -18,6 +18,7 @@ import Web2 from "../Others/Web2";
 import Shows from "../Screens/Shows";
 import Music2 from "../Screens/Music2";
 import Listz from "../Screens/List";
+import Playlists from "../Screens/Playlists";
 
 const Stack=createNativeStackNavigator();
 
@@ -40,18 +41,19 @@ const Root=()=>{
           },
           headerTintColor: 'white',
         })}/>
+        <Stack.Screen name="Playlists" component={Playlists} options={() => ({
+          headerTitle: (props) => <LogoTitle {...props} name={"Now Playing"} />,
+          headerStyle: {
+            backgroundColor: 'black',
+          },
+          headerTintColor: 'white',
+        })}/>
      
         <Stack.Screen  name="Web" component={Web}  options={{
             headerShown:false
             
         }}/>
           <Stack.Screen  name="Web2" component={Web2}  options={{
-            headerShown:false
-            
-        }}/>
-    
-        
-        <Stack.Screen  name="Music2" component={Music2}  options={{
             headerShown:false
             
         }}/>

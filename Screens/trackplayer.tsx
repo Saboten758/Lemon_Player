@@ -125,7 +125,51 @@ import TrackPlayer, {
         duration:0,
         isLiveStream:true,
       },
-      
+      {
+        id:'7',
+        url: "https://stream.zeno.fm/hnz0etymypwuv",
+        artwork:require('../assets/japanFM.webp'),
+        artist:"Japan Radio.",
+        title:'Japan FM',
+        duration:0,
+        isLiveStream:true,
+      },
+      {
+        id:'8',
+        url: "https://stream-153.zeno.fm/kfpemsm21oluv?zs=54GidxYbT3Su8gflaRJXZg",
+        artwork:require('../assets/chicano.webp'),
+        artist:"Rap Radio.",
+        title:'Chicano Rap',
+        duration:0,
+        isLiveStream:true,
+      },
+      {
+        id:'9',
+        url: "https://stream-150.zeno.fm/1d4qva0n3p8uv?zs=qH1BEAEjTVirt34HWNsQfA",
+        artwork:require('../assets/okufm.webp'),
+        artist:"Japanese Music.",
+        title:'Oku FM',
+        duration:0,
+        isLiveStream:true,
+      },
+      {
+        id:'10',
+        url: "https://stream-164.zeno.fm/tzt3zoqyiiutv?zs=feTl5QpzT5-g33367PeRpA",
+        artwork:"https://zeno.fm/_next/image/?url=https%3A%2F%2Fimages.zeno.fm%2FoLURlhY7oj3dQ9ojdR0Pj0GWKjT1ni-uJfFYexkZGaw%2Frs%3Afit%3A240%3A240%2Fg%3Ace%3A0%3A0%2FaHR0cHM6Ly9zdHJlYW0tdG9vbHMuemVub21lZGlhLmNvbS9jb250ZW50L3N0YXRpb25zL2QzODE2YzZjLTM5ODQtNDcxNy05MzFjLTMwNGU0ZTRlMmY2Mi9pbWFnZS8_dXBkYXRlZD0xNjkwOTMzNjQ0MDAw.webp&w=1920&q=100",
+        artist:"Chill BGM & Songs.",
+        title:'Radio Kiss',
+        duration:0,
+        isLiveStream:true,
+      },
+      {
+        id:'11',
+        url: "https://stream-151.zeno.fm/feucy4tblujvv?zs=sWRIn89hSvq7JTUxrEvarQ",
+        artwork:"https://zeno.fm/_next/image/?url=https%3A%2F%2Fimages.zeno.fm%2FtbHu6TxTiWihzPMllqlJLYG76uc7q5f1CWUoF0YfoXU%2Frs%3Afit%3A240%3A240%2Fg%3Ace%3A0%3A0%2FaHR0cHM6Ly9zdHJlYW0tdG9vbHMuemVub21lZGlhLmNvbS9jb250ZW50L3N0YXRpb25zL2Q3YzYxNmIwLWU4NGMtNGM5Ni1iYmRlLWIzODc4ZTE3NGZmNy9pbWFnZS8_dXBkYXRlZD0xNjkzMzg4OTE3MDAw.webp&w=1920&q=100",
+        artist:"BOOM",
+        title:'__ZOE__',
+        duration:0,
+        isLiveStream:true,
+      },
       
       
       
