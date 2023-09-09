@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Dimensions, FlatList, ImageBackground, StyleSheet, ToastAndroid, TouchableOpacity, View, useWindowDimensions } from "react-native";
+import { Dimensions, FlatList, ImageBackground, StyleSheet, ToastAndroid, TouchableOpacity, View, Image } from "react-native";
 import { Text } from "react-native-paper";
 import TrackPlayer, {
     useTrackPlayerEvents,
@@ -78,8 +78,37 @@ const Playlists=()=>{
         }
       }
       
+      const [art,setArt]=useState(null)
+      const playbackState = usePlaybackState();
+      const progress = useProgress();
+
+useEffect(() => {
+  if (playbackState === State.Playing) {
+    // Get the current track ID
+    TrackPlayer.getCurrentTrack().then(async (trackId) => {
+      // Retrieve the metadata of the current track
+      const track = await TrackPlayer.getTrack(trackId);
+
+      // Check if the track has album art
+      if (track && track.artwork) {
+        setArt(track.artwork.uri);
+      } else {
+        // Handle the case where there is no artwork for the current track
+        setArt(null);
+      }
+    });
+  } else {
+    // Reset the artwork when playback is paused or stopped
+    setArt(null);
+  }
+}, [playbackState, progress.position]);
+
+      
     return(
       <ImageBackground source={back?{uri:back}:require('../assets/mood.gif')} resizeMode={'cover'}style={{alignItems:'center',flex:1}}>
+        <View style={{padding:10,alignItems:'center',justifyContent:'center'}}>
+          <Image source={art?{uri:art}:require('../assets/load.gif')} resizeMode={'cover'}style={{height:100,width:100}}/>
+          </View>
         <View style={{flexDirection: 'row',
         flexWrap: 'wrap', alignItems: 'center',marginTop:10}}>
           <Icon.Button
@@ -100,6 +129,7 @@ const Playlists=()=>{
             color={'#eeccff'}
             backgroundColor="transparent"
             onPress={() => TrackPlayer.skipToNext()}/>
+      
       </View>
         <View style={[styles.playlist,{width:width-40,height:height>300?height-300:height-100}]}>
           <FlatList
