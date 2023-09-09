@@ -8,7 +8,6 @@ import TrackPlayer, {
     useProgress,
     Event,
     State,
-    RepeatMode
   } from 'react-native-track-player';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -19,11 +18,11 @@ const Playlists=()=>{
     const [queue, setQueue] = useState([]);
     const [currentTrack, setCurrentTrack] = useState(0);
     const[back,setBack]=useState('')
+
     async function loadPlaylist() {
       const queue = await TrackPlayer.getQueue();
       setQueue(queue);
     }
-
     async function fetch_img(){
       const res=await axios.get("https://api.plaza.one/backgrounds/random")
       setBack(res.data.src)
@@ -106,8 +105,8 @@ useEffect(() => {
       
     return(
       <ImageBackground source={back?{uri:back}:require('../assets/mood.gif')} resizeMode={'cover'}style={{alignItems:'center',flex:1}}>
-        <View style={{padding:10,alignItems:'center',justifyContent:'center'}}>
-          <Image source={art?{uri:art}:require('../assets/load.gif')} resizeMode={'cover'}style={{height:100,width:100}}/>
+        <View style={{margin:10,alignItems:'center',justifyContent:'center',borderRadius:20}}>
+          <Image source={art?{uri:art}:require('../assets/load.gif')} resizeMode={'cover'}style={{height:100,width:100,}}/>
           </View>
         <View style={{flexDirection: 'row',
         flexWrap: 'wrap', alignItems: 'center',marginTop:10}}>
@@ -138,7 +137,7 @@ useEffect(() => {
             renderItem={({item, index}) => <PlaylistItem
                                               index={index}
                                               title={item.title}
-                                              isCurrent={currentTrack == index }/>
+                                              isCurrent={currentTrack === index }/>
             }
           />
         </View>

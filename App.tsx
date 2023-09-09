@@ -11,7 +11,7 @@ import TrackPlayer from "react-native-track-player";
 const App=()=>{
 
   const [latestVersion, setLatestVersion] = useState("");
-  const currentVersion = "1.4"; 
+  const currentVersion = "1.4.1"; 
   SystemNavigationBar.setNavigationColor('#3D3C49')
   useEffect(() => {
     const init = async () => {

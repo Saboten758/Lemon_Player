@@ -16,8 +16,7 @@ import Games from "../Screens/Games";
 import Manga from "../Screens/Manga";
 import Web2 from "../Others/Web2";
 import Shows from "../Screens/Shows";
-import Music2 from "../Screens/Music2";
-import Listz from "../Screens/List";
+
 import Playlists from "../Screens/Playlists";
 
 const Stack=createNativeStackNavigator();

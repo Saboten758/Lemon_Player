@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {ImageBackground,SafeAreaView,StyleSheet,Text,View,FlatList,ActivityIndicator,TouchableOpacity, Dimensions, useWindowDimensions, ToastAndroid, ScrollView} from 'react-native';
+import {ImageBackground,SafeAreaView,StyleSheet,Text,View,FlatList,ActivityIndicator,TouchableOpacity, Dimensions, useWindowDimensions, ToastAndroid, ScrollView, Alert} from 'react-native';
+import Share from 'react-native-share';
 import TrackPlayer, {
     useTrackPlayerEvents,
     usePlaybackState,
@@ -88,7 +89,7 @@ import { useNavigation } from '@react-navigation/native';
     const [width,setWidth] =useState(Dimensions.get('window').width)
     const [queue, setQueue] = useState([]);
     const [currentTrack, setCurrentTrack] = useState(0);
-
+    
     async function loadPlaylist() {
       const queue = await TrackPlayer.getQueue();
       setQueue(queue);
@@ -139,7 +140,7 @@ import { useNavigation } from '@react-navigation/native';
         TrackPlayer.play();
       }
     }
-  
+    
     return(
       <View style={{flexDirection: 'row',
         flexWrap: 'wrap', alignItems: 'center'}}>
@@ -178,6 +179,22 @@ const Music=()=>{
   const [pick,setPick]=useState(0)
   const [width,setWidth]=useState(Dimensions.get('window').width)
   const [rep,setRep]=useState(false)
+
+  const handleShare = async () => {
+    Alert.alert('Share Lemon Player',"Do You like Lemon Player?\nWanna Share with Friends?",[
+      { text: 'Cancel', style: 'cancel' },
+      { text: 'OK', onPress: () => {
+        try {
+          ToastAndroid.show("This means a lot! Thanks :>",ToastAndroid.SHORT)
+          Share.open({ url: "https://github.com/Saboten758/Lemon_Player/releases/latest", title: 'Share Lemon PLayer With Friends!' })
+            .catch((error) => console.log('Error !', error));
+        } catch (error) {
+          console.log('Link Error!', error);
+        }
+      } },
+    ])
+    
+  };
 
   const open = async () => {
 
@@ -231,7 +248,7 @@ const Music=()=>{
             }
             else{
               ToastAndroid.show(`${result[0]['name']} was already present in the playlist!`,ToastAndroid.SHORT)
-            }
+            }FileClick
             
           
       }
@@ -363,7 +380,7 @@ const Music=()=>{
                 <Icon color={'#E3F4F6'} name="download-outline" size={30}/>
                 <Text style={styles.txt}>ADD</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginEnd:10,marginStart:10,alignItems:'center'}}>
+                <TouchableOpacity style={{marginEnd:10,marginStart:10,alignItems:'center'}}  onPress={handleShare}>
                 <Icon color={'#E3F4F6'} name="share-social" size={30}/>
                 <Text style={styles.txt}>SHARE</Text>
                 </TouchableOpacity>
